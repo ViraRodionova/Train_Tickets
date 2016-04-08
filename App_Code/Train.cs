@@ -32,8 +32,8 @@ public abstract class Component
 public class Train : Component
 {
     public string TrainNum { get; set; }
-    DateTime DepartureDate { get; set; }
-    DateTime ArrivalDate { get; set; }
+    public DateTime DepartureDate { get; set; }
+    public DateTime ArrivalDate { get; set; }
     
     public List<Component> carriages = new List<Component>();
 

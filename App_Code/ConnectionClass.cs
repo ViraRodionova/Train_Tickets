@@ -150,6 +150,7 @@ public static class ConnectionClass
                     train_ids.Add(reader.GetInt32(0));
                 }
                 command.Parameters.Clear();
+                reader.Close();
             }
 
             //command.CommandText = query;
@@ -256,5 +257,30 @@ public static class ConnectionClass
             conn.Close();
         }
         return train;
+    }
+
+    public static List<string> GerFullRouteByTrain(string train_num)
+    {
+        string query = string.Format(@"SELECT station FROM routes
+                                       WHERE train_num = '{0}'
+                                       ORDER BY st_order", train_num);
+        List<string> stations = new List<string>();
+
+        try
+        {
+            conn.Open();
+            command.CommandText = query;
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                stations.Add(reader.GetString(0));
+            }
+        }
+        finally
+        {
+            conn.Close();
+        }
+        return stations;
     }
 }
