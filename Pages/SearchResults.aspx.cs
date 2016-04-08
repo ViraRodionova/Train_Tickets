@@ -108,7 +108,7 @@ public partial class Pages_SearchResults : System.Web.UI.Page
 
             if (free_L > 0)
             {
-                Label lblL = new Label { Text = string.Format("Купе: {0}", free_L) };
+                Label lblL = new Label { Text = string.Format("Люкс: {0}", free_L) };
                 Button btnL = new Button
                 {
                     ID = string.Format("btnL" + train.Id),

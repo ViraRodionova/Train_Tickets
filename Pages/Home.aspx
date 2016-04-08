@@ -21,7 +21,8 @@
     <br />
     <asp:TextBox ID="txtDateOne" runat="server"></asp:TextBox>
     <ajaxToolkit:CalendarExtender ID="txtDateOne_CalendarExtender" runat="server" TargetControlID="txtDateOne" />
-    &nbsp;&nbsp;&nbsp;
+    &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDateOne" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+    &nbsp;&nbsp;
     <asp:TextBox ID="txtDateTwo" runat="server" Visible="False"></asp:TextBox>
     <ajaxToolkit:CalendarExtender ID="txtDateTwo_CalendarExtender" runat="server" TargetControlID="txtDateTwo" />
     <br />
