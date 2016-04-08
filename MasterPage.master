@@ -7,6 +7,10 @@
     <title>Rodionova Tickets</title>
     <asp:ContentPlaceHolder id="head" runat="server">
         <link rel="stylesheet" type="text/css" href="~/Styles/StyleSheet.css"/>
+        <script type="text/javascript" src='<%= Page.ResolveUrl("~/JavaScript/jquery-1.3.2.min.js") %>'></script>
+        <script type="text/javascript" src='<%= Page.ResolveUrl("~/JavaScript/jquery-ui.js") %>'></script>
+        <script type="text/javascript" src='<%= Page.ResolveUrl("~/JavaScript/jquery-ui.min.js") %>'></script>
+        
     </asp:ContentPlaceHolder>
 </head>
 <body>
@@ -15,11 +19,11 @@
     <div id="wrapper">
 
         <div id="header">
-            <asp:Image ID="imgLogo" runat="server" ImageUrl="~/images/banner.png" ImageAlign="Left" />
+            <asp:Image ID="imgLogo" runat="server" ImageUrl="~/images/banner.png" />
             <asp:Label ID="lblMyTicket" runat="server" Text="dgbfdnh"></asp:Label>
         </div>
 
-        <div>
+        <div id="content_area">
             <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
             </asp:ContentPlaceHolder>

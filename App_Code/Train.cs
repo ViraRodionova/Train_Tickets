@@ -8,13 +8,19 @@ using System.Web;
 /// </summary>
 public abstract class Component
 {
-    protected bool isFree;
-    public int number;
+    public int Id { get; set; }
+    protected bool IsFree { get; set; }
 
-    protected Component(int number)
+    public Component(int id)
     {
-        this.number = number;
-        this.isFree = true;
+        this.Id = id;
+        this.IsFree = true;
+    }
+
+    public Component(int id, bool free)
+    {
+        this.Id = id;
+        this.IsFree = free;
     }
 
     public abstract void AddComponent(Component c);
@@ -22,11 +28,21 @@ public abstract class Component
     public abstract int CountFreePlaces();
 }
 
+//Composit
 public class Train : Component
 {
+    public string TrainNum { get; set; }
+    DateTime DepartureDate { get; set; }
+    DateTime ArrivalDate { get; set; }
+    
     public List<Component> carriages = new List<Component>();
 
-    public Train(int number) : base(number) { }
+    public Train(int Id, string trainNum, DateTime departureDate, DateTime arrivalDate) :base(Id)
+    {
+        TrainNum = trainNum;
+        DepartureDate = departureDate;
+        ArrivalDate = arrivalDate;
+    }
 
     public override void AddComponent(Component c)
     {
@@ -42,7 +58,7 @@ public class Train : Component
             res += c.CountFreePlaces();
         }
 
-        if (res == 0) isFree = false;
+        if (res == 0) IsFree = false;
         return res;
     }
 
@@ -52,16 +68,21 @@ public class Train : Component
     }
 }
 
-class Carriage : Component
+//Composit
+public class Carriage : Component
 {
-    List<Component> places = new List<Component>();
-    public int type;
-    //0 - плацкарт
-    //1 - купе
-    //2 - люкс
+    public int num { get; set; }
+    public char type { get; set; }
 
-    public Carriage(int type, int number) : base(number)
+    public List<Component> places = new List<Component>();
+    
+    //П - плацкарт
+    //К - купе
+    //Л - люкс
+    
+    public Carriage(int Id, int num, char type) : base(Id)
     {
+        this.num = num;
         this.type = type;
     }
 
@@ -79,7 +100,7 @@ class Carriage : Component
             res += c.CountFreePlaces();
         }
 
-        if (res == 0) isFree = false;
+        if (res == 0) IsFree = false;
         return res;
     }
 
@@ -89,15 +110,26 @@ class Carriage : Component
     }
 }
 
-class Place : Component
+//Leaf
+public class Place : Component
 {
-    public Place(int number) : base(number) { }
+    public int num { get; set; }
+
+    public Place(int Id, int num) : base(Id)
+    {
+        this.num = num;
+    }
+
+    public Place(int Id, int num, bool free) : base(Id, free)
+    {
+        this.num = num;
+    }
 
     public override void AddComponent(Component c) { }
 
     public override int CountFreePlaces()
     {
-        if (isFree) return 1;
+        if (IsFree) return 1;
         return 0;
     }
 
