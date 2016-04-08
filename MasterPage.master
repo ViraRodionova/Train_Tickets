@@ -4,30 +4,31 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    
-    <link rel="stylesheet" type="text/css" href="~/styles/StyleSheet.css" />
+    <title>Rodionova Tickets</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+        <link rel="stylesheet" type="text/css" href="~/Styles/StyleSheet.css"/>
+    </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
 
     <div id="wrapper">
-        <div id="banner">
 
-            <img src="~/images/banner.png" runat="server" class="ImgBanner"/>
-            <div id="user_page">
-                <img src="~/images/user_icon.png" runat="server" class="ImgIcon" />
-                <a href="#">Мій квиток</a>
-            </div>
-            
-            
+        <div id="header">
+            <asp:Image ID="imgLogo" runat="server" ImageUrl="~/images/banner.png" ImageAlign="Left" />
+            <asp:Label ID="lblMyTicket" runat="server" Text="dgbfdnh"></asp:Label>
         </div>
 
-        <div id="content_area">
+        <div>
             <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
             </asp:ContentPlaceHolder>
         </div>
+
+        <div id="footer">
+
+        </div>
+
     </div>
     </form>
 </body>

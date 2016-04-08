@@ -1,57 +1,22 @@
 ﻿body {
-    background-image: url(../images/bg.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    font-family: 'Lucida Grande', Tahoma, Verdana, Arial, sans-serif;
+    background-color: #119434;
 }
 
 #wrapper{
-    width: auto;
-    height: auto;
+    width: 1080px;
+    margin: 0 auto;
     padding: 10px;
+    border: 5px solid #dedede;
+    background-color: #b6ff00;
 }
 
-#banner{
-    height: 40px;
-    width: auto;
-    border: 1px dotted white;
-    padding: 15px 50px 15px 5px;
-}
-
-#content_area{
-    width: auto;
-    height: auto;
-    margin: 30px 0;
-    border: 1px dotted white;
-    background-image: url(../images/transparent.png);
-}
-
-.ImgBanner{
-    height: 44px;
-    width: 115px;
-    float: left;
-}
-
-.ImgIcon{
-    height: 40px;
-    width:auto;
-    float: left;
-}
-
-#user_page{
-    height: 50px;
-    width:150px;
+#lblMyTicket{
     float: right;
+
 }
 
-#user_page:hover{
-    cursor: pointer;
-}
-
-#user_page a:link, a:active, a:visited{
-    color: forestgreen;
-    text-shadow: 0.1em 0.1em #333;
-}
-
-#user_page a:hover{
-    color: coral;
+#header{
+    height: 200px;
+    border: 3px solid #119434;
 }
