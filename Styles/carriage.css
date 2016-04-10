@@ -47,5 +47,8 @@
 }
 
 .closed{
-    background-color: #808080;
+    width: 40px;
+    height: 40px;
+    background-color: #e1eae8;
+    color: #ff0000;
 }

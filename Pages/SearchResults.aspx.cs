@@ -10,11 +10,13 @@ public partial class Pages_SearchResults : System.Web.UI.Page
     private static List<Train> trains = new List<Train>();
     private static bool flag = true;
     private static Panel trainsPanel = new Panel();
+    private static List<Button> buttonsList = new List<Button>();
     
     protected void Page_Load(object sender, EventArgs e)
     {
         if(flag) SetTrains();
         pnlTrains.Controls.Add(trainsPanel);
+        SetButtons();
     }
 
     private void GetTrains(string from, string to, string _date)
@@ -48,33 +50,53 @@ public partial class Pages_SearchResults : System.Web.UI.Page
         foreach(Train _train in trains)
         {
             trainsPanel.Controls.Add(bd.GenerateTrainInfo(_train));
+            SetButtonsEventHandlers(_train.TrainNum, _train.Id);
         }
 
-
         DataBase.trains = trains;
-
-
-        SetButtonsEventHendlers();
 
         pnlTrains.Controls.Add(trainsPanel);
         Page.DataBind();
     }
 
-    private void SetButtonsEventHendlers()
+    private void SetButtonsEventHandlers(string trainNum, int id)
     {
-        ControlsFinder<Button> cf = new ControlsFinder<Button>();
-        cf.FindControlsRecursive(trainsPanel);
+        Button btnP = new Button
+        {
+            ID = "btn_P_" + trainNum + "_" + id,
+            Text = "Вибрати",
+            CausesValidation = false
+        };
+        Button btnK = new Button
+        {
+            ID = "btn_K_" + trainNum + "_" + id,
+            Text = "Вибрати",
+            CausesValidation = false
+        };
+        Button btnL = new Button
+        {
+            ID = "btn_L_" + trainNum + "_" + id,
+            Text = "Вибрати",
+            CausesValidation = false
+        };
 
-        List<Button> buttonsList = cf.FoundControls;
-        buttonsList[0].Click += new EventHandler(ButtonChooseIsClicked);
-        buttonsList[0].Text = "gggggggggggg";
-
-        //foreach(Button button in buttonsList)
-        //{
-        //    button.Click += ButtonChooseIsClicked;
-        //    button.Text = "gggggggggggg";
-        //}
+        buttonsList.Add(btnP);
+        buttonsList.Add(btnK);
+        buttonsList.Add(btnL);
     }
+
+    private void SetButtons()
+    {
+        for(int i = 0, p = 0; i < buttonsList.Count;)
+        {
+            buttonsList[i].Click += ButtonChooseIsClicked;
+            trainsPanel.Controls[p].Controls.Add(buttonsList[i]);
+            i++;
+            if (i % 3 != 0) trainsPanel.Controls[p].Controls.Add(new Literal { Text = "<br />" });
+            else p++;
+        }
+    }
+
 
     private void ButtonChooseIsClicked(object sender, EventArgs e)
     {

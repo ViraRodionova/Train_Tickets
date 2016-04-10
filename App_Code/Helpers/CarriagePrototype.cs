@@ -12,12 +12,13 @@ using System.Web.UI;
 public abstract class CarriagePrototype
 {
     //Carriage carriage;
-    public Panel panel;
+    //public Panel panel;
+    public List<Button> buttons = new List<Button>();
 
     public CarriagePrototype()
     {
         //this.carriage = carriage;
-        this.panel = new Panel();
+        //this.panel = new Panel();
     }
 
     public void CheckFreePlaces(Carriage carriage)
@@ -26,25 +27,38 @@ public abstract class CarriagePrototype
         {
             if (!place.IsFree)
             {
-                FindPlace(place.num, panel);
+                FindPlace(place.num);
             }
         }
     }
 
-    private void FindPlace(int num, Control control)
+    /*private void FindPlace(int num, Control control)
     {
         foreach (Control c in control.Controls)
         {
             if (c.GetType() == typeof(Button))
             {
-                if (c.ID[c.ID.Length - 1] == num)
+                //if (Convert.ToInt32(((Button)c).ID[((Button)c).ID.Length - 1]) == num)
+                if (Convert.ToInt32(((Button)c).Text) == num)
                 {
                     ((Button)c).CssClass = "closed";
-                    ((Button)c).Enabled = false;
+                    //((Button)c).Enabled = false;
                 }
             }
             else
                 FindPlace(num, c);
+        }
+    }*/
+
+    private void FindPlace(int num)
+    {
+        foreach(Button but in buttons)
+        {
+            if(Convert.ToInt32(but.Text) == num)
+            {
+                but.CssClass = "closed";
+                break;
+            }
         }
     }
 
@@ -64,11 +78,14 @@ class CarriageReserved : CarriagePrototype
             {
                 Text = i.ToString(),
                 CssClass = "PlaceReservedA",
+                CausesValidation = false
                 //ID = "place_" + i.ToString()
             };
-            panel.Controls.Add(place);
+            //place.Click += Place_Click;
+            buttons.Add(place);
+            //panel.Controls.Add(place); 
         }
-    }    
+    }
 }
 
 class CarriageCoupe : CarriagePrototype
@@ -81,9 +98,12 @@ class CarriageCoupe : CarriagePrototype
             {
                 Text = i.ToString(),
                 CssClass = "PlaceCoupe",
+                CausesValidation = false
                 //ID = "place_" + i.ToString()
             };
-            panel.Controls.Add(place);
+            //place.Click += Place_Click;
+            buttons.Add(place);
+            //panel.Controls.Add(place);
         }
     }
 }
@@ -98,9 +118,12 @@ class CarriageLux : CarriagePrototype
             {
                 Text = i.ToString(),
                 CssClass = "PlaceLux",
+                CausesValidation = false
                 //ID = "place_" + i.ToString()
             };
-            panel.Controls.Add(place);
+            //place.Click += Place_Click;
+            buttons.Add(place);
+            //panel.Controls.Add(place);
         }
     }
 }

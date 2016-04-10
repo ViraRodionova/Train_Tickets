@@ -9,11 +9,33 @@ public partial class Pages_CarriageView : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        pnlContent.Controls.Add(PrototypeManager.GetCarriage(
-            Request.QueryString["carType"], (Carriage)DataBase.trains[0].carriages[0]).panel);
-        pnlContent.Controls.Add(PrototypeManager.GetCarriage(
-            "coupe", (Carriage)DataBase.trains[0].carriages[0]).panel);
-        pnlContent.Controls.Add(PrototypeManager.GetCarriage(
-            "lux", (Carriage)DataBase.trains[0].carriages[0]).panel);
+        CarriagePrototype crp = PrototypeManager.GetCarriage(Request.QueryString["carType"], (Carriage)DataBase.trains[0].carriages[0]);
+
+
+
+        GenerateTest(crp.buttons);
+
     }
+
+    private void GenerateTest(List<Button> list)
+    {
+        foreach(Button b in list)
+        {
+            b.Click += B_Click;
+            pnlContent.Controls.Add(b);
+        }
+    }
+
+    private void B_Click(object sender, EventArgs e)
+    {
+        Button v = (Button)sender;
+        v.CssClass = "closed";
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
+    }
+
+
 }

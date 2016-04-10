@@ -124,15 +124,15 @@ class Builder
             Text = type + ": " + freePlaces
         };
 
-        Button btnChoose = new Button
-        {
-            ID = "btn" + bId + "_" + train.TrainNum + "_" + train.Id,
+        //Button btnChoose = new Button
+        //{
+        //    ID = "btn" + bId + "_" + train.TrainNum + "_" + train.Id,
             //OnClientClick = "Pages_SearchResults.ButtonChooseIsClicked",
-            Text = "Вибрати",
-        };
+        //    Text = "Вибрати",
+        //};
         //btnChoose.Click += Pages_SearchResults.ButtonChooseIsClicked;
         panel.Controls.Add(lblTypeFree);
-        panel.Controls.Add(btnChoose);
+        //panel.Controls.Add(btnChoose);
 
         return panel;
     }
@@ -173,9 +173,12 @@ public class TrainOverviewBuilder
 
         List<Panel> freeCarr = new List<Panel>();
 
-        if (freeP > 0) freeCarr.Add(builder.SetCarriage("Плацкарт", freeP, "P"));
-        if (freeK > 0) freeCarr.Add(builder.SetCarriage("Купе", freeK, "K"));
-        if (freeL > 0) freeCarr.Add(builder.SetCarriage("Люкс", freeL, "L"));
+        //if (freeP > 0)
+            freeCarr.Add(builder.SetCarriage("Плацкарт", freeP, "P"));
+        //if (freeK > 0)
+            freeCarr.Add(builder.SetCarriage("Купе", freeK, "K"));
+        //if (freeL > 0)
+            freeCarr.Add(builder.SetCarriage("Люкс", freeL, "L"));
 
         builder.SetPanelPlaces(freeCarr);
 
