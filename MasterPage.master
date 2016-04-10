@@ -5,15 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Rodionova Tickets</title>
+
     <asp:ContentPlaceHolder id="head" runat="server">
-        
-        <script type="text/javascript" src='<%= Page.ResolveUrl("~/JavaScript/jquery-1.3.2.min.js") %>'></script>
-        <script type="text/javascript" src='<%= Page.ResolveUrl("~/JavaScript/jquery-ui.js") %>'></script>
         <script type="text/javascript" src='<%= Page.ResolveUrl("~/JavaScript/jquery-ui.min.js") %>'></script>
-        
     </asp:ContentPlaceHolder>
 
-    <link rel="stylesheet" type="text/css" href="~/Styles/StyleSheet.css"/>
+    <link rel="stylesheet" type="text/css" href="~/Styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="~/Styles/ResultGrid.css"/>
 
 </head>
 <body>
@@ -21,7 +19,7 @@
 
     <div id="wrapper">
 
-        <div id="header">
+        <div id="banner">
             <asp:Image ID="imgLogo" runat="server" ImageUrl="~/images/banner.png" />
             <asp:Label ID="lblMyTicket" runat="server" Text="dgbfdnh"></asp:Label>
         </div>

@@ -4,26 +4,31 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-    <asp:CheckBox ID="cbOne" runat="server" Checked="True" OnCheckedChanged="cbOne_CheckedChanged" Text="В одну сторону" AutoPostBack="True" />
+    <asp:CheckBox ID="cbOne" runat="server" Checked="True" OnCheckedChanged="cbOne_CheckedChanged" Text="В одну сторону" AutoPostBack="True" Width="259px" CssClass="squaredThree" />
 &nbsp;&nbsp;&nbsp;
-    <asp:CheckBox ID="cbTwo" runat="server" OnCheckedChanged="cbTwo_CheckedChanged" Text="В обидві сторони" AutoPostBack="True" />
+    <asp:CheckBox ID="cbTwo" runat="server" OnCheckedChanged="cbTwo_CheckedChanged" Text="В обидві сторони" AutoPostBack="True" Width="250px" CssClass="squaredThree" />
     <br />
-    <asp:DropDownList ID="ddlFrom" runat="server" DataSourceID="sds_stations" DataTextField="station" DataValueField="station">
+    <asp:DropDownList ID="ddlFrom" runat="server" DataSourceID="sds_stations" DataTextField="station" DataValueField="station" CssClass="Ddl">
     </asp:DropDownList>
 
-    <asp:ImageButton ID="btnReverse" runat="server" />
-    <asp:DropDownList ID="ddlTo" runat="server" DataSourceID="sds_stations" DataTextField="station" DataValueField="station">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <asp:ImageButton ID="btnReverse" runat="server" CausesValidation="False" Height="40px" OnClick="btnReverse_Click" Width="40px" ImageAlign="Middle" ImageUrl="~/images/b_refresh.png" />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:DropDownList ID="ddlTo" runat="server" DataSourceID="sds_stations" DataTextField="station" DataValueField="station" CssClass="Ddl">
     </asp:DropDownList>
 
-    <asp:Button ID="btnSearch" runat="server" Text="Пошук" OnClick="btnSearch_Click" />
+    &nbsp;&nbsp;&nbsp;
+
+    <asp:Button ID="btnSearch" runat="server" Text="Пошук" OnClick="btnSearch_Click" CssClass="BtnSearch" />
     &nbsp;<asp:Label ID="lblResult" runat="server"></asp:Label>
     <br />
     <br />
-    <asp:TextBox ID="txtDateOne" runat="server"></asp:TextBox>
+    <asp:TextBox ID="txtDateOne" runat="server" Height="30px" Width="150px" CssClass="TextBoxCalendar"></asp:TextBox>
     <ajaxToolkit:CalendarExtender ID="txtDateOne_CalendarExtender" runat="server" TargetControlID="txtDateOne" />
     &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDateOne" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
-    &nbsp;&nbsp;
-    <asp:TextBox ID="txtDateTwo" runat="server" Visible="False"></asp:TextBox>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:TextBox ID="txtDateTwo" runat="server" Visible="False" Height="30px" Width="150px" CssClass="TextBoxCalendar"></asp:TextBox>
     <ajaxToolkit:CalendarExtender ID="txtDateTwo_CalendarExtender" runat="server" TargetControlID="txtDateTwo" />
     <br />
     <asp:ScriptManager ID="ScriptManager1" runat="server">
