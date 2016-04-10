@@ -1,9 +1,17 @@
 ﻿.PnlTrain{
+    height: 100px;
     margin: 10px;
     padding: 10px;
     border: 2px solid red;
 }
 
+.left{
+    float: left;
+}
+
+.right{
+    float:right;
+}
 
 .lbl_num{
     border: 1px solid #ff6a00;

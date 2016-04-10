@@ -8,11 +8,13 @@ using System.Web.UI.WebControls;
 public partial class Pages_SearchResults : System.Web.UI.Page
 {
     private static List<Train> trains = new List<Train>();
+    private static bool flag = true;
+    private static Panel trainsPanel = new Panel();
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        GetTrains(Request.QueryString["stFrom"], Request.QueryString["stTo"], Request.QueryString["date"]);
-        SetTrains();
+        if(flag) SetTrains();
+        pnlTrains.Controls.Add(trainsPanel);
     }
 
     private void GetTrains(string from, string to, string _date)
@@ -39,94 +41,16 @@ public partial class Pages_SearchResults : System.Web.UI.Page
 
     private void SetTrains()
     {
-        foreach(Train train in trains)
+        flag = false;
+        GetTrains(Request.QueryString["stFrom"], Request.QueryString["stTo"], Request.QueryString["date"]);
+        TrainOverviewBuilder bd = new TrainOverviewBuilder(Request.QueryString["stFrom"], Request.QueryString["stTo"]);
+
+        foreach(Train _train in trains)
         {
-            List<string> route = ConnectionClass.GerFullRouteByTrain(train.TrainNum);
-
-            Panel p_train = new Panel() { CssClass = "PnlTrain" };
-            Label lblNum = new Label { Text = train.TrainNum, CssClass= "lbl_num" };
-            Literal l1 = new Literal { Text = "<br />" };
-            Label lblRoute = new Label { Text = string.Format(route[0] + "-" + route[route.Count - 1]), CssClass= "lbl_route" };
-            Literal l2 = new Literal { Text = "<br />" };
-            LinkButton linkFullRoute = new LinkButton
-            {
-                ID = string.Format("lbtn" + train.TrainNum + train.Id),
-                Text = "Показати повний шлях",
-                CssClass= "lbtn_full_route"
-            };
-
-            Label dep_date = new Label
-            {
-                Text = string.Format(Convert.ToDateTime(train.DepartureDate).ToString()
-                + Request.QueryString["stFrom"]),
-                CssClass= "lbl_date"
-            };
-            Label arr_date = new Label
-            {
-                Text = string.Format(Convert.ToDateTime(train.ArrivalDate).ToString()
-                + Request.QueryString["stTo"]),
-                CssClass= "lbl_date"
-            };
- 
-            int free_P = 0;
-            int free_K = 0;
-            int free_L = 0;
-
-            foreach (Carriage carr in train.carriages)
-            {
-                if (carr.type == 'П') free_P += carr.CountFreePlaces();
-                else if (carr.type == 'К') free_K += carr.CountFreePlaces();
-                else if (carr.type == 'Л') free_L += carr.CountFreePlaces();
-            }
-            
-            p_train.Controls.Add(lblNum);
-            if(free_P > 0)
-            {
-                Label lblP = new Label { Text = string.Format("Плацкарт: {0}", free_P) };
-                Button btnP = new Button
-                {
-                    ID = string.Format("btnP" + train.TrainNum + train.Id),
-                    Text = "Вибрати",
-                    CssClass= "BtnChoose"
-                };
-                p_train.Controls.Add(lblP);
-                p_train.Controls.Add(btnP);
-            }
-            p_train.Controls.Add(l1);
-
-            p_train.Controls.Add(lblRoute);
-            p_train.Controls.Add(dep_date);
-            p_train.Controls.Add(arr_date);
-            if (free_K > 0)
-            {
-                Label lblK = new Label { Text = string.Format("Купе: {0}", free_K) };
-                Button btnK = new Button
-                {
-                    ID = string.Format("btnK" + train.TrainNum + train.Id),
-                    Text = "Вибрати",
-                    CssClass = "BtnChoose"
-                };
-                p_train.Controls.Add(lblK);
-                p_train.Controls.Add(btnK);
-            }
-            p_train.Controls.Add(l2);
-
-            p_train.Controls.Add(linkFullRoute);
-            if (free_L > 0)
-            {
-                Label lblL = new Label { Text = string.Format("Люкс: {0}", free_L) };
-                Button btnL = new Button
-                {
-                    ID = string.Format("btnL" + train.TrainNum + train.Id),
-                    Text = "Вибрати",
-                    CssClass = "BtnChoose"
-                };
-                p_train.Controls.Add(lblL);
-                p_train.Controls.Add(btnL);
-            }
-
-            pnlTrains.Controls.Add(p_train);
+            trainsPanel.Controls.Add(bd.GenerateTrainInfo(_train));
         }
+
+        pnlTrains.Controls.Add(trainsPanel);
         Page.DataBind();
     }
 }
