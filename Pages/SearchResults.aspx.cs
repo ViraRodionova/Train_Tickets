@@ -10,7 +10,7 @@ public partial class Pages_SearchResults : System.Web.UI.Page
     private static List<Train> trains = new List<Train>();
     private static bool flag = true;
     private static Panel trainsPanel = new Panel();
-
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         if(flag) SetTrains();
@@ -50,7 +50,57 @@ public partial class Pages_SearchResults : System.Web.UI.Page
             trainsPanel.Controls.Add(bd.GenerateTrainInfo(_train));
         }
 
+
+        DataBase.trains = trains;
+
+
+        SetButtonsEventHendlers();
+
         pnlTrains.Controls.Add(trainsPanel);
         Page.DataBind();
     }
+
+    private void SetButtonsEventHendlers()
+    {
+        ControlsFinder<Button> cf = new ControlsFinder<Button>();
+        cf.FindControlsRecursive(trainsPanel);
+
+        List<Button> buttonsList = cf.FoundControls;
+        buttonsList[0].Click += new EventHandler(ButtonChooseIsClicked);
+        buttonsList[0].Text = "gggggggggggg";
+
+        //foreach(Button button in buttonsList)
+        //{
+        //    button.Click += ButtonChooseIsClicked;
+        //    button.Text = "gggggggggggg";
+        //}
+    }
+
+    private void ButtonChooseIsClicked(object sender, EventArgs e)
+    {
+        lblTest.Text = "HELLO";
+        Page.DataBind();
+    }
+
+    protected void ButtonIsClicked(object sender, EventArgs e)
+    {
+        Button but = (Button)sender;
+        string par = "";
+
+        switch(but.ID[but.ID.Length - 1])
+        {
+            case '1':
+                par = "reserved";
+                break;
+            case '2':
+                par = "coupe";
+                break;
+            case '3':
+                par = "lux";
+                break;
+        }
+
+        Response.Redirect("CarriageView.aspx?carType=" + par);
+    }
 }
+

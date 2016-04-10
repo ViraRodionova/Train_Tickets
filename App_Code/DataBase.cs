@@ -8,5 +8,5 @@ using System.Web;
 /// </summary>
 public static class DataBase
 {
-    
+    public static List<Train> trains;
 }

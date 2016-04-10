@@ -127,9 +127,10 @@ class Builder
         Button btnChoose = new Button
         {
             ID = "btn" + bId + "_" + train.TrainNum + "_" + train.Id,
-            Text = "Вибрати"
+            //OnClientClick = "Pages_SearchResults.ButtonChooseIsClicked",
+            Text = "Вибрати",
         };
-
+        //btnChoose.Click += Pages_SearchResults.ButtonChooseIsClicked;
         panel.Controls.Add(lblTypeFree);
         panel.Controls.Add(btnChoose);
 
@@ -141,7 +142,6 @@ class Builder
         return result;
     }
 }
-
 
 //Director
 public class TrainOverviewBuilder

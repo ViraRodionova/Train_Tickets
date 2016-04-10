@@ -9,7 +9,7 @@ using System.Web;
 public abstract class Component
 {
     public int Id { get; set; }
-    protected bool IsFree { get; set; }
+    public bool IsFree { get; set; }
 
     public Component(int id)
     {

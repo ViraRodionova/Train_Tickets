@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" type="text/css" href="~/Styles/style.css"/>
     <link rel="stylesheet" type="text/css" href="~/Styles/ResultGrid.css"/>
+    <link rel="stylesheet" type="text/css" href="~/Styles/carriage.css"/>
 
 </head>
 <body>
