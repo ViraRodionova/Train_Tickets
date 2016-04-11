@@ -81,6 +81,8 @@ class CarriageReserved : CarriagePrototype
                 CausesValidation = false
                 //ID = "place_" + i.ToString()
             };
+            if (i > 36) place.CssClass = "PlaceReservedB";
+
             //place.Click += Place_Click;
             buttons.Add(place);
             //panel.Controls.Add(place); 

@@ -22,7 +22,12 @@
 
         <div id="banner">
             <asp:Image ID="imgLogo" runat="server" ImageUrl="~/images/banner.png" />
-            <asp:Label ID="lblMyTicket" runat="server" Text="dgbfdnh"></asp:Label>
+            
+            <div id="personalPage">
+                <asp:Image ID="Image1" runat="server" />
+                <asp:LinkButton ID="lbtnMyTicket" runat="server">Мій квиток</asp:LinkButton>
+            </div>
+
         </div>
 
         <div id="content_area">

@@ -5,10 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:Label ID="lblTest" runat="server" Text=""></asp:Label>
 
-    <asp:Button ID="Button1" runat="server" Text="Плацкарт" OnClick="ButtonIsClicked" />
-<asp:Button ID="Button2" runat="server" Text="Купе" OnClick="ButtonIsClicked" />
-<asp:Button ID="Button3" runat="server" Text="Люкс" OnClick="ButtonIsClicked" />
-
     <asp:Panel ID="pnlTrains" runat="server">
         
     </asp:Panel>

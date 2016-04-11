@@ -2,11 +2,11 @@
     width: 40px;
     height: 40px;
     background-color: #0094ff;
-    color: #e1eae8;
+    color: #ffffff;
 }
 
 .PlaceReservedA:hover{
-    background-color: #e1eae8;
+    background-color: #ffffff;
     color: #0094ff;
 }
 
@@ -14,11 +14,11 @@
     width: 60px;
     height: 40px;
     background-color: #0094ff;
-    color: #e1eae8;
+    color: #ffffff;
 }
 
 .PlaceReservedB:hover{
-    background-color: #e1eae8;
+    background-color: #ffffff;
     color: #0094ff;
 }
 
@@ -26,11 +26,11 @@
     width: 40px;
     height: 40px;
     background-color: #0094ff;
-    color: #e1eae8;
+    color: #ffffff;
 }
 
 .PlaceCoupe:hover{
-    background-color: #e1eae8;
+    background-color: #ffffff;
     color: #0094ff;
 }
 
@@ -38,11 +38,11 @@
     width: 40px;
     height: 80px;
     background-color: #0094ff;
-    color: #e1eae8;
+    color: #ffffff;
 }
 
 .PlaceLux:hover{
-    background-color: #e1eae8;
+    background-color: #ffffff;
     color: #0094ff;
 }
 
@@ -51,4 +51,10 @@
     height: 40px;
     background-color: #e1eae8;
     color: #ff0000;
+}
+
+.waiting{
+    width: 40px;
+    height: 40px;
+    background-color: #ffec52;
 }

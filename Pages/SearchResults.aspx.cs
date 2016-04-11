@@ -100,8 +100,24 @@ public partial class Pages_SearchResults : System.Web.UI.Page
 
     private void ButtonChooseIsClicked(object sender, EventArgs e)
     {
-        lblTest.Text = "HELLO";
-        Page.DataBind();
+        Button but = (Button)sender;
+        String par = but.ID;
+        string trainId = par.Split(new char[] { '_' }, 
+            StringSplitOptions.RemoveEmptyEntries).ToArray().GetValue(2).ToString();
+
+        switch (but.ID[4])
+        {
+            case 'P':
+                par = "reserved";
+                break;
+            case 'K':
+                par = "coupe";
+                break;
+            case 'L':
+                par = "lux";
+                break;
+        }
+        Response.Redirect("CarriageView.aspx?carType=" + par + "&trainId=" + trainId);
     }
 
     protected void ButtonIsClicked(object sender, EventArgs e)
@@ -122,7 +138,7 @@ public partial class Pages_SearchResults : System.Web.UI.Page
                 break;
         }
 
-        Response.Redirect("CarriageView.aspx?carType=" + par);
+        //Response.Redirect("CarriageView.aspx?carType=" + par);
     }
 }
 

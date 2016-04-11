@@ -10,14 +10,11 @@ public partial class Pages_CarriageView : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         CarriagePrototype crp = PrototypeManager.GetCarriage(Request.QueryString["carType"], (Carriage)DataBase.trains[0].carriages[0]);
-
-
-
-        GenerateTest(crp.buttons);
+        GeneratePlaces(crp.buttons);
 
     }
 
-    private void GenerateTest(List<Button> list)
+    private void GeneratePlaces(List<Button> list)
     {
         foreach(Button b in list)
         {
@@ -29,13 +26,6 @@ public partial class Pages_CarriageView : System.Web.UI.Page
     private void B_Click(object sender, EventArgs e)
     {
         Button v = (Button)sender;
-        v.CssClass = "closed";
+        v.CssClass = "waiting";
     }
-
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-
-    }
-
-
 }
