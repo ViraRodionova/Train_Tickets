@@ -94,8 +94,6 @@ public static class ConnectionClass
         return stations.ToArray();
     }
 
-
-
     public static List<string> GetTrainsNums(string st_from, string st_to)
     {
         List<string> trains = new List<string>();
@@ -282,5 +280,53 @@ public static class ConnectionClass
             conn.Close();
         }
         return stations;
+    }
+
+    public static User LogInUser(string login, string password)
+    {
+        //Check if user exists
+        string query = string.Format("SELECT COUNT(*) FROM users WHERE name = '{0}'", login);
+        command.CommandText = query;
+        //command.Parameters.Clear();
+
+        try
+        {
+            conn.Open();
+            int amountOfUsers = (int)command.ExecuteScalar();
+
+            if (amountOfUsers == 1)
+            {
+                //User exists, check if passwords match
+                query = string.Format("SELECT password FROM users WHERE name = '{0}'", login);
+                command.CommandText = query;
+                string dbPassword = command.ExecuteScalar().ToString();
+
+                if (dbPassword == password)
+                {
+                    query = string.Format("SELECT name, surname, phone, type FROM users WHERE name = '{0}'", login);
+                    command.CommandText = query;
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    User user = null;
+
+                    while (reader.Read())
+                    {
+                        string name = reader.GetString(0);
+                        string surname = reader.GetString(1);
+                        string phone = reader.GetString(2);
+                        string type = reader.GetString(3);
+
+                        user = new User(login, password, name, surname, phone, type);
+                        return user;
+                    }
+                }
+            }
+        }
+        finally
+        {
+            conn.Close();
+        }
+
+        return null;
     }
 }
