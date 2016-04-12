@@ -11,4 +11,23 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
 
     }
+
+    protected void lbtnMyTicket_Click(object sender, EventArgs e)
+    {
+        ContentPlaceHolder1.Controls.Clear();
+        if (Session["login"] == null)
+        {
+            Response.Redirect("~/Pages/Account/Login.aspx");
+        }
+        else
+        {
+            Response.Redirect("~/Pages/Account/PersonalPage.aspx");
+        }
+    }
+
+    protected void lbtnLogout_Click(object sender, EventArgs e)
+    {
+        Session["login"] = null;
+        Session["type"] = null;
+    }
 }

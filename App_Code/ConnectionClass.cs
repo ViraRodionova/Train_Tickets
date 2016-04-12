@@ -285,7 +285,7 @@ public static class ConnectionClass
     public static User LogInUser(string login, string password)
     {
         //Check if user exists
-        string query = string.Format("SELECT COUNT(*) FROM users WHERE name = '{0}'", login);
+        string query = string.Format("SELECT COUNT(*) FROM users WHERE email = '{0}'", login);
         command.CommandText = query;
         //command.Parameters.Clear();
 
@@ -297,13 +297,13 @@ public static class ConnectionClass
             if (amountOfUsers == 1)
             {
                 //User exists, check if passwords match
-                query = string.Format("SELECT password FROM users WHERE name = '{0}'", login);
+                query = string.Format("SELECT password FROM users WHERE email = '{0}'", login);
                 command.CommandText = query;
                 string dbPassword = command.ExecuteScalar().ToString();
 
                 if (dbPassword == password)
                 {
-                    query = string.Format("SELECT name, surname, phone, type FROM users WHERE name = '{0}'", login);
+                    query = string.Format("SELECT name, surname, phone, type FROM users WHERE email = '{0}'", login);
                     command.CommandText = query;
 
                     SqlDataReader reader = command.ExecuteReader();

@@ -48,7 +48,7 @@
             <td>Телефон:</td>
             <td class="auto-style1">
                 <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
-                <asp:regularexpressionvalidator runat="server" errormessage="Введіть номер у такому форматі: 0683647235" ControlToValidate="txtPhone" ForeColor="Red" ValidationExpression="\d{10}"></asp:regularexpressionvalidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*" ControlToValidate="txtPhone" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>

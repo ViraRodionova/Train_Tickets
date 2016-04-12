@@ -25,7 +25,9 @@
             
             <div id="personalPage">
                 <asp:Image ID="Image1" runat="server" />
-                <asp:LinkButton ID="lbtnMyTicket" runat="server">Мій квиток</asp:LinkButton>
+                <asp:LinkButton ID="lbtnMyTicket" runat="server" OnClick="lbtnMyTicket_Click">Мій квиток</asp:LinkButton>
+                <br />
+                <asp:LinkButton ID="lbtnLogout" runat="server" OnClick="lbtnLogout_Click">Вийти</asp:LinkButton>
             </div>
 
         </div>
