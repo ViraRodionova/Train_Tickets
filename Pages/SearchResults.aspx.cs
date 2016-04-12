@@ -14,7 +14,14 @@ public partial class Pages_SearchResults : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(flag) SetTrains();
+        if (flag)
+        {
+            trainsPanel.Controls.Clear();
+            trains.Clear();
+
+            SetTrains();
+        }
+
         pnlTrains.Controls.Add(trainsPanel);
         SetButtonsEventHandlers();
     }
@@ -87,6 +94,7 @@ public partial class Pages_SearchResults : System.Web.UI.Page
                 par = "l";
                 break;
         }
+        flag = true;
         Response.Redirect("CarriageView.aspx?carType=" + par + "&trainId=" + trainInfo.GetValue(3).ToString()
             + "&trainNum=" + trainInfo.GetValue(2).ToString());
         //Response.Redirect("CarriageView.aspx?carType=" + but.ID[4] + "&trainId=" + trainId);

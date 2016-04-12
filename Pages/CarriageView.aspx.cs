@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class Pages_CarriageView : System.Web.UI.Page
 {
-    private static List<Carriage> carriages = new List<Carriage>();
+    //private static List<Carriage> carriages = new List<Carriage>();
     private static List<string> orders_string = new List<string>();
     //private static List<Order> orders = new List<Order>();
 
@@ -125,16 +125,21 @@ public partial class Pages_CarriageView : System.Web.UI.Page
     {
         List<Order> orderList = (List<Order>)Session["orders"];
         ConnectionClass.AddOrders(orderList);
+        ConnectionClass.UpdateFreePlaces(orderList);
         Session["orders"] = null;
+        orders_string.Clear();
+        Response.Redirect("~/Pages/Home.aspx");
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         Session["orders"] = null;
+        orders_string.Clear();
         btnOK.Visible = false;
         btnCancel.Visible = false;
         lblResult.Visible = false;
         pnlContent.Visible = true;
+        //Response.Redirect("~/Pages/Home.aspx");
     }
 
     private void Authenticate()

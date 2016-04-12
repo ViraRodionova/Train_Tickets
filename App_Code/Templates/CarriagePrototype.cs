@@ -61,6 +61,7 @@ public abstract class CarriagePrototype
             if(Convert.ToInt32(but.Text) == num)
             {
                 but.CssClass = "closed";
+                buttons.Remove(but);
                 break;
             }
         }
