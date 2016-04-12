@@ -9,19 +9,28 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["login"] != null)
+        {
+            lblName.Text = Session["login"] + "Вітаємо на нашому порталі";
+            lbtnLogout.Visible = true;
+        }
+        else
+        {
+            lblName.Text = "";
+            lbtnLogout.Visible = false;
+        }
     }
 
     protected void lbtnMyTicket_Click(object sender, EventArgs e)
     {
         ContentPlaceHolder1.Controls.Clear();
-        if (Session["login"] == null)
+        if (Session["login"] != null)
         {
-            Response.Redirect("~/Pages/Account/Login.aspx");
+            Response.Redirect("~/Pages/Account/PersonalPage.aspx");
         }
         else
         {
-            Response.Redirect("~/Pages/Account/PersonalPage.aspx");
+            Response.Redirect("~/Pages/Account/Login.aspx");
         }
     }
 
@@ -29,5 +38,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         Session["login"] = null;
         Session["type"] = null;
+        Response.Redirect("~/Pages/Home.aspx");
     }
 }

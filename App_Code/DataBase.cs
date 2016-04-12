@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +10,8 @@ using System.Web.UI.WebControls;
 /// </summary>
 public static class DataBase
 {
-    public static List<Train> trains;
+    //public static List<Train> trains;
+    public static Hashtable trains = new Hashtable();
     /*public static List<Button> placessButtons = new List<Button>();
 
     static DataBase()

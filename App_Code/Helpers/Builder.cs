@@ -4,19 +4,39 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 
-//Concrete Builder
-class Builder
-{
-    private Train train;
-    private Panel result;
 
-    public Builder(Train train)
+public abstract class Builder
+{
+    protected Panel result;
+    public Train train;
+    //public List<Button> buttons = new List<Button>();
+
+    public abstract void SetPanelRoute();
+    public abstract void SetPanelDeparture();
+    public abstract void SetPanelArrival();
+    public abstract void SetPanelPlaces(List<object> places);
+    public abstract Panel SetCarriage(string type, int freePlaces, string bId, List<Button> buttons);
+    public Panel GetResult()
+    {
+        return result;
+    }
+}
+
+//Concrete Builder
+public class TrainOverviewBuilder : Builder
+{
+    string stFrom;
+    string stTo;
+
+    public TrainOverviewBuilder(Train train, string stFrom, string stTo)
     {
         this.train = train;
+        this.stFrom = stFrom;
+        this.stTo = stTo;
         result = new Panel { CssClass = "PnlTrain" };
     }
 
-    public void SetPanelRoute()
+    public override void SetPanelRoute()
     {
         Panel panel = new Panel { CssClass = "left" };
 
@@ -42,7 +62,7 @@ class Builder
         result.Controls.Add(panel);
     }
 
-    public void SetPanelDeparture(string stFrom)
+    public override void SetPanelDeparture()
     {
         Panel panel = new Panel { CssClass = "left" };
         Label lblTime = new Label
@@ -58,7 +78,7 @@ class Builder
         };
         Label lblCity = new Label
         {
-            Text = stFrom
+            Text = this.stFrom
         };
         Literal l1 = new Literal { Text = "<br />" };
         Literal l2 = new Literal { Text = "<br />" };
@@ -72,7 +92,7 @@ class Builder
         result.Controls.Add(panel);
     }
 
-    public void SetPanelArrival(string stTo)
+    public override void SetPanelArrival()
     {
         Panel panel = new Panel { CssClass = "left" };
         Label lblTime = new Label
@@ -88,7 +108,7 @@ class Builder
         };
         Label lblCity = new Label
         {
-            Text = stTo
+            Text = this.stTo
         };
         Literal l1 = new Literal { Text = "<br />" };
         Literal l2 = new Literal { Text = "<br />" };
@@ -102,7 +122,7 @@ class Builder
         result.Controls.Add(panel);
     }
 
-    public void SetPanelPlaces(List<Panel> places)
+    public override void SetPanelPlaces(List<object> places)
     {
         Panel panel = new Panel { CssClass = "left" };
 
@@ -115,7 +135,7 @@ class Builder
         result.Controls.Add(panel);
     }
 
-    public Panel SetCarriage(string type, int freePlaces, string bId)
+    public override Panel SetCarriage(string type, int freePlaces, string bId, List<Button> buttons)
     {
         Panel panel = new Panel();
 
@@ -124,64 +144,84 @@ class Builder
             Text = type + ": " + freePlaces
         };
 
-        //Button btnChoose = new Button
-        //{
-        //    ID = "btn" + bId + "_" + train.TrainNum + "_" + train.Id,
+        Button btnChoose = new Button
+        {
+            ID = "btn_" + bId + "_" + train.TrainNum + "_" + train.Id,
             //OnClientClick = "Pages_SearchResults.ButtonChooseIsClicked",
-        //    Text = "Вибрати",
-        //};
+            Text = "Вибрати",
+        };
         //btnChoose.Click += Pages_SearchResults.ButtonChooseIsClicked;
         panel.Controls.Add(lblTypeFree);
-        //panel.Controls.Add(btnChoose);
-
+        panel.Controls.Add(btnChoose);
+        buttons.Add(btnChoose);
         return panel;
     }
+}
 
-    public Panel GetTrainResult()
+//Concrete Builder
+public class CarriageOverviewBuilder : Builder
+{
+    public override Panel SetCarriage(string type, int freePlaces, string bId, List<Button> buttons)
     {
-        return result;
+        throw new NotImplementedException();
+    }
+
+    public override void SetPanelArrival()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void SetPanelDeparture()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void SetPanelPlaces(List<object> _places)
+    {
+        //object = Place
+        List<Place> places = new List<Place>();
+        foreach (object obj in _places)
+            places.Add((Place)obj);
+
+        
+    }
+
+    public override void SetPanelRoute()
+    {
+        throw new NotImplementedException();
     }
 }
 
 //Director
-public class TrainOverviewBuilder
+public static class BuilderDirector
 {
-    private string stFrom;
-    private string stTo;
-
-    public TrainOverviewBuilder(string stFrom, string stTo)
+    public static Panel GenerateTrainInfo(Builder builder, List<Button> buttons)
     {
-        this.stFrom = stFrom;
-        this.stTo = stTo;
-    }
-
-    public Panel GenerateTrainInfo(Train train)
-    {
-        Builder builder = new Builder(train);
+        //TrainOverviewBuilder builder = new TrainOverviewBuilder(train);
 
         builder.SetPanelRoute();
-        builder.SetPanelDeparture(stFrom);
-        builder.SetPanelArrival(stTo);
+        builder.SetPanelDeparture();
+        builder.SetPanelArrival();
 
-        int freeP = 0, freeK = 0, freeL = 0;
-        foreach(Carriage carr in train.carriages)
+        int freeP = 0, freeC = 0, freeL = 0;
+        foreach(Carriage carr in builder.train.carriages)
         {
-            if (carr.type == 'П') freeP += carr.CountFreePlaces();
-            else if (carr.type == 'К') freeK += carr.CountFreePlaces();
-            else if (carr.type == 'Л') freeL += carr.CountFreePlaces();
+            if (carr.type == 'r') freeP += carr.CountFreePlaces();
+            else if (carr.type == 'c') freeC += carr.CountFreePlaces();
+            else if (carr.type == 'l') freeL += carr.CountFreePlaces();
         }
 
-        List<Panel> freeCarr = new List<Panel>();
+        List<object> freeCarr = new List<object>();
 
         //if (freeP > 0)
-            freeCarr.Add(builder.SetCarriage("Плацкарт", freeP, "P"));
+            freeCarr.Add(builder.SetCarriage("Плацкарт", freeP, "P", buttons));
         //if (freeK > 0)
-            freeCarr.Add(builder.SetCarriage("Купе", freeK, "K"));
+            freeCarr.Add(builder.SetCarriage("Купе", freeC, "C", buttons));
         //if (freeL > 0)
-            freeCarr.Add(builder.SetCarriage("Люкс", freeL, "L"));
+            freeCarr.Add(builder.SetCarriage("Люкс", freeL, "L", buttons));
 
         builder.SetPanelPlaces(freeCarr);
 
-        return builder.GetTrainResult();
+        return builder.GetResult();
     }
 }

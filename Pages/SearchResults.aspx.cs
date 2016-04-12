@@ -16,7 +16,7 @@ public partial class Pages_SearchResults : System.Web.UI.Page
     {
         if(flag) SetTrains();
         pnlTrains.Controls.Add(trainsPanel);
-        SetButtons();
+        SetButtonsEventHandlers();
     }
 
     private void GetTrains(string from, string to, string _date)
@@ -45,100 +45,49 @@ public partial class Pages_SearchResults : System.Web.UI.Page
     {
         flag = false;
         GetTrains(Request.QueryString["stFrom"], Request.QueryString["stTo"], Request.QueryString["date"]);
-        TrainOverviewBuilder bd = new TrainOverviewBuilder(Request.QueryString["stFrom"], Request.QueryString["stTo"]);
+        //BuilderDirector bd = new BuilderDirector(Request.QueryString["stFrom"], Request.QueryString["stTo"]);
 
         foreach(Train _train in trains)
         {
-            trainsPanel.Controls.Add(bd.GenerateTrainInfo(_train));
-            SetButtonsEventHandlers(_train.TrainNum, _train.Id);
+            trainsPanel.Controls.Add(BuilderDirector.GenerateTrainInfo(
+                new TrainOverviewBuilder(_train, Request.QueryString["stFrom"], 
+                Request.QueryString["stTo"]), buttonsList));
+            SetButtonsEventHandlers();
+            DataBase.trains[_train.Id] = _train;
         }
 
-        DataBase.trains = trains;
+        //DataBase.trains = trains;
 
         pnlTrains.Controls.Add(trainsPanel);
         Page.DataBind();
     }
 
-    private void SetButtonsEventHandlers(string trainNum, int id)
+    private void SetButtonsEventHandlers()
     {
-        Button btnP = new Button
-        {
-            ID = "btn_P_" + trainNum + "_" + id,
-            Text = "Вибрати",
-            CausesValidation = false
-        };
-        Button btnK = new Button
-        {
-            ID = "btn_K_" + trainNum + "_" + id,
-            Text = "Вибрати",
-            CausesValidation = false
-        };
-        Button btnL = new Button
-        {
-            ID = "btn_L_" + trainNum + "_" + id,
-            Text = "Вибрати",
-            CausesValidation = false
-        };
-
-        buttonsList.Add(btnP);
-        buttonsList.Add(btnK);
-        buttonsList.Add(btnL);
+        foreach (Button but in buttonsList)
+            but.Click += ButtonChooseIsClicked;
     }
-
-    private void SetButtons()
-    {
-        for(int i = 0, p = 0; i < buttonsList.Count;)
-        {
-            buttonsList[i].Click += ButtonChooseIsClicked;
-            trainsPanel.Controls[p].Controls.Add(buttonsList[i]);
-            i++;
-            if (i % 3 != 0) trainsPanel.Controls[p].Controls.Add(new Literal { Text = "<br />" });
-            else p++;
-        }
-    }
-
 
     private void ButtonChooseIsClicked(object sender, EventArgs e)
     {
         Button but = (Button)sender;
-        String par = but.ID;
+        string par = but.ID;
         string trainId = par.Split(new char[] { '_' }, 
-            StringSplitOptions.RemoveEmptyEntries).ToArray().GetValue(2).ToString();
+            StringSplitOptions.RemoveEmptyEntries).ToArray().GetValue(3).ToString();
 
         switch (but.ID[4])
         {
             case 'P':
-                par = "reserved";
+                par = "r";
                 break;
             case 'K':
-                par = "coupe";
+                par = "c";
                 break;
             case 'L':
-                par = "lux";
+                par = "l";
                 break;
         }
         Response.Redirect("CarriageView.aspx?carType=" + par + "&trainId=" + trainId);
-    }
-
-    protected void ButtonIsClicked(object sender, EventArgs e)
-    {
-        Button but = (Button)sender;
-        string par = "";
-
-        switch(but.ID[but.ID.Length - 1])
-        {
-            case '1':
-                par = "reserved";
-                break;
-            case '2':
-                par = "coupe";
-                break;
-            case '3':
-                par = "lux";
-                break;
-        }
-
-        //Response.Redirect("CarriageView.aspx?carType=" + par);
+        //Response.Redirect("CarriageView.aspx?carType=" + but.ID[4] + "&trainId=" + trainId);
     }
 }
-
