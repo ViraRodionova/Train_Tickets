@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -351,6 +352,31 @@ public static class ConnectionClass
                 return "Користувача зареєстровано!";
             }
             else return "Користувача з такою електронною поштою вже зареєстровано";
+        }
+        finally
+        {
+            conn.Close();
+        }
+    }
+
+    public static void AddOrders(ArrayList orders)
+    {
+        try
+        {
+            command.CommandText = "INSERT INTO orders VALUES (@client, @train, @carriage, @place, @date)";
+            conn.Open();
+
+            foreach (Order order in orders)
+            {
+                command.Parameters.Add(new SqlParameter("@client", order.UserEmail));
+                command.Parameters.Add(new SqlParameter("@train", order.TrainId));
+                command.Parameters.Add(new SqlParameter("@carriage", order.CarriageNum));
+                command.Parameters.Add(new SqlParameter("@place", order.PlaceNum));
+                command.Parameters.Add(new SqlParameter("@date", order.Date));
+
+                command.ExecuteNonQuery();
+                command.Parameters.Clear();
+            }
         }
         finally
         {
