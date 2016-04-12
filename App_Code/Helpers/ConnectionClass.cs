@@ -384,4 +384,35 @@ public static class ConnectionClass
             conn.Close();
         }
     }
+
+    public static void UpdateFreePlaces(List<Order> orders)
+    {
+        try
+        {
+            command.CommandText = string.Format(@"
+                                        UPDATE places
+                                        SET is_free=@isFree
+                                        WHERE carriage_id = (
+	                                    SELECT id FROM carriages
+	                                    WHERE train_id = @trainId
+	                                    AND num = @carrNum)
+                                        AND num = @placeNum");
+            conn.Open();
+
+            foreach (Order order in orders)
+            {
+                command.Parameters.Add(new SqlParameter("@isFree", false));
+                command.Parameters.Add(new SqlParameter("@trainId", order.TrainId));
+                command.Parameters.Add(new SqlParameter("@carrNum", order.CarriageNum));
+                command.Parameters.Add(new SqlParameter("@placeNum", order.PlaceNum));
+                
+                command.ExecuteNonQuery();
+                command.Parameters.Clear();
+            }
+        }
+        finally
+        {
+            conn.Close();
+        }
+    }
 }
