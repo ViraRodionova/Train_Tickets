@@ -329,4 +329,32 @@ public static class ConnectionClass
 
         return null;
     }
+
+    public static string RegisterUser(User user)
+    {
+        //Check if user exists
+        string query = string.Format("SELECT COUNT(*) FROM users WHERE email = '{0}'", user.Email);
+        command.CommandText = query;
+
+        try
+        {
+            conn.Open();
+            int amountOfUsers = (int)command.ExecuteScalar();
+
+            if (amountOfUsers < 1)
+            {
+                //User doesn't exists
+                query = string.Format("INSERT INTO users VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
+                    user.Email, user.Password, user.Name, user.Surname, user.Phone, user.Type);
+                command.CommandText = query;
+                command.ExecuteNonQuery();
+                return "Користувача зареєстровано!";
+            }
+            else return "Користувача з такою електронною поштою вже зареєстровано";
+        }
+        finally
+        {
+            conn.Close();
+        }
+    }
 }
