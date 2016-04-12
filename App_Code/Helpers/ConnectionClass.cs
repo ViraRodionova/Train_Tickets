@@ -359,17 +359,18 @@ public static class ConnectionClass
         }
     }
 
-    public static void AddOrders(ArrayList orders)
+    public static void AddOrders(List<Order> orders)
     {
         try
         {
-            command.CommandText = "INSERT INTO orders VALUES (@client, @train, @carriage, @place, @date)";
+            command.CommandText = "INSERT INTO orders VALUES (@client, @trainId, @trainNum, @carriage, @place, @date)";
             conn.Open();
 
             foreach (Order order in orders)
             {
                 command.Parameters.Add(new SqlParameter("@client", order.UserEmail));
-                command.Parameters.Add(new SqlParameter("@train", order.TrainId));
+                command.Parameters.Add(new SqlParameter("@trainId", order.TrainId));
+                command.Parameters.Add(new SqlParameter("@trainNum", order.TrainNum));
                 command.Parameters.Add(new SqlParameter("@carriage", order.CarriageNum));
                 command.Parameters.Add(new SqlParameter("@place", order.PlaceNum));
                 command.Parameters.Add(new SqlParameter("@date", order.Date));

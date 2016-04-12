@@ -23,7 +23,8 @@ public partial class Pages_Account_Login : System.Web.UI.Page
             Session["type"] = user.Type;
             Session["email"] = user.Email;
 
-            Response.Redirect("~/Pages/Account/PersonalPage.aspx");
+            //Response.Redirect("~/Pages/Account/PersonalPage.aspx");
+            Response.Redirect("~/Pages/Home.aspx");
         }
         else
         {

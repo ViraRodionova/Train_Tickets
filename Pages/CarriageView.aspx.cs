@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -8,7 +9,8 @@ using System.Web.UI.WebControls;
 public partial class Pages_CarriageView : System.Web.UI.Page
 {
     private static List<Carriage> carriages = new List<Carriage>();
-    private static List<string> order = new List<string>(); 
+    private static List<string> orders_string = new List<string>();
+    //private static List<Order> orders = new List<Order>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -46,40 +48,100 @@ public partial class Pages_CarriageView : System.Web.UI.Page
         if (v.CssClass == "waiting")
         {
             v.CssClass = "PlaceReservedA";
-            order.Remove(v.ID);
+            orders_string.Remove(v.ID);
         }
         else
         {
             v.CssClass = "waiting";
-            order.Add(v.ID);
+            orders_string.Add(v.ID);
         }
     }
 
     private void GenerateReview()
     {
-        /*double totalAmount = 0;
-        ArrayList orderList = GetOrders();
+        double totalAmount = 0;
+        List<Order> orderList = GetOrders();
         Session["orders"] = orderList;
+        double price = 255.25;
 
         StringBuilder sb = new StringBuilder();
         sb.Append("<table>");
         sb.Append("<h3>Please review your order</h3>");
+        sb.Append(@"<tr>
+                                        <td width = '50px'>Поїзд</td>
+                                        <td width = '50px'>Вагон</td>
+                                        <td width = '50px'>Місце</td>
+                                    </tr>");
 
         foreach (Order order in orderList)
         {
-            double totalRow = order.Price * order.Amount;
+            double totalRow = price;
             sb.Append(String.Format(@"<tr>
                                         <td width = '50px'>{0}</td>
-                                        <td width = '200px'>{1} ({2})</td>
+                                        <td width = '50px'>{1}</td>
+                                        <td width = '50px'>{2}</td>
                                         <td>{3}</td><td>$</td>
                                     </tr>",
-                                    order.Amount, order.Product, order.Price, String.Format("{0:0.00}", totalRow)));
+                                    order.TrainNum, order.CarriageNum, order.PlaceNum, String.Format("{0:0.00}", totalRow)));
             totalAmount += totalRow;
         }
 
         sb.Append(String.Format(@"<tr>
                                     <td><b>Total: </b></td>
                                     <td><b>{0} $</b></td>
-                                </tr></table>", totalAmount));*/
+                                </tr></table>", totalAmount));
+        lblResult.Text = sb.ToString();
+        lblResult.Visible = true;
+        btnOK.Visible = true;
+        btnCancel.Visible = true;
+        pnlContent.Visible = false;
     }
+
+    private List<Order> GetOrders()
+    {
+        List<Order> orderList = new List<Order>();
+        int trainId = Convert.ToInt32(Request.QueryString["trainId"]);
+        string trainNum = Request.QueryString["trainNum"];
+
+        foreach(string place in orders_string)
+        {
+            Array placeInfo = place.Split(new char[] { '_' },
+            StringSplitOptions.RemoveEmptyEntries).ToArray();
+            DateTime date = DateTime.Now;
+            Order order = new Order(Session["email"].ToString(), trainId, trainNum,
+                Convert.ToInt32(placeInfo.GetValue(2)), Convert.ToInt32(placeInfo.GetValue(1)), date);
+            orderList.Add(order);
+        }
+        return orderList;
     }
+
+    protected void btnOrder_Click(object sender, EventArgs e)
+    {
+        Authenticate();
+        GenerateReview();
+    }
+
+    protected void btnOK_Click(object sender, EventArgs e)
+    {
+        List<Order> orderList = (List<Order>)Session["orders"];
+        ConnectionClass.AddOrders(orderList);
+        Session["orders"] = null;
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Session["orders"] = null;
+        btnOK.Visible = false;
+        btnCancel.Visible = false;
+        lblResult.Visible = false;
+        pnlContent.Visible = true;
+    }
+
+    private void Authenticate()
+    {
+        if (Session["email"] == null)
+        {
+            Response.Redirect("~/Pages/Account/Login.aspx");
+        }
+    }
+}

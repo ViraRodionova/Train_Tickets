@@ -82,7 +82,7 @@ public abstract class CarriagePrototype
 [Serializable]
 class CarriageReserved : CarriagePrototype
 {
-    public CarriageReserved(int carrId)
+    public CarriageReserved(int carrNum)
     {
         for(int i = 1; i < 37; i += 2)
         {
@@ -91,7 +91,7 @@ class CarriageReserved : CarriagePrototype
                 Text = i.ToString(),
                 CssClass = "PlaceReservedA",
                 CausesValidation = false,
-                ID = "place_" + i.ToString() + "_" + carrId
+                ID = "place_" + i.ToString() + "_" + carrNum
             };
             buttons.Add(place);
             panel.Controls.Add(place);
@@ -113,7 +113,7 @@ class CarriageReserved : CarriagePrototype
                 Text = i.ToString(),
                 CssClass = "PlaceReservedA",
                 CausesValidation = false,
-                ID = "place_" + i.ToString() + "_" + carrId
+                ID = "place_" + i.ToString() + "_" + carrNum
             };
             buttons.Add(place);
             panel.Controls.Add(place);
@@ -136,7 +136,7 @@ class CarriageReserved : CarriagePrototype
                 Text = i.ToString(),
                 CssClass = "PlaceReservedB",
                 CausesValidation = false,
-                ID = "place_" + i.ToString() + "_" + carrId
+                ID = "place_" + i.ToString() + "_" + carrNum
             };
             buttons.Add(place);
             panel.Controls.Add(place);
@@ -200,7 +200,7 @@ public class PrototypeManager
         switch (carrCode)
         {
             case 'r':
-                carr = new CarriageReserved(current.Id);
+                carr = new CarriageReserved(current.num);
                 break;
             case 'c':
                 carr = new CarriageCoupe();

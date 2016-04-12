@@ -72,9 +72,9 @@ public partial class Pages_SearchResults : System.Web.UI.Page
     {
         Button but = (Button)sender;
         string par = but.ID;
-        string trainId = par.Split(new char[] { '_' }, 
-            StringSplitOptions.RemoveEmptyEntries).ToArray().GetValue(3).ToString();
-
+        Array trainInfo = par.Split(new char[] { '_' }, 
+            StringSplitOptions.RemoveEmptyEntries).ToArray();
+        
         switch (but.ID[4])
         {
             case 'P':
@@ -87,7 +87,8 @@ public partial class Pages_SearchResults : System.Web.UI.Page
                 par = "l";
                 break;
         }
-        Response.Redirect("CarriageView.aspx?carType=" + par + "&trainId=" + trainId);
+        Response.Redirect("CarriageView.aspx?carType=" + par + "&trainId=" + trainInfo.GetValue(3).ToString()
+            + "&trainNum=" + trainInfo.GetValue(2).ToString());
         //Response.Redirect("CarriageView.aspx?carType=" + but.ID[4] + "&trainId=" + trainId);
     }
 }

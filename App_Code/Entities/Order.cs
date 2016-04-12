@@ -11,24 +11,16 @@ public class Order
     public int Id { get; set; }
     public string UserEmail { get; set; }
     public int TrainId { get; set; }
+    public string TrainNum { get; set; }
     public int CarriageNum { get; set; }
     public int PlaceNum { get; set; }
     public DateTime Date { get; set; }
 
-    public Order(int id, string userEmai, int trainId, int carriageNum, int placeNum, DateTime date)
+    public Order(string userEmail, int trainId, string trainNum, int carriageNum, int placeNum, DateTime date)
     {
-        Id = id;
-        UserEmail = userEmai;
+        UserEmail = userEmail;
         TrainId = trainId;
-        CarriageNum = carriageNum;
-        PlaceNum = placeNum;
-        Date = date;
-    }
-
-    public Order(string userEmai, int trainId, int carriageNum, int placeNum, DateTime date)
-    {
-        UserEmail = userEmai;
-        TrainId = trainId;
+        TrainNum = trainNum;
         CarriageNum = carriageNum;
         PlaceNum = placeNum;
         Date = date;
