@@ -415,4 +415,39 @@ public static class ConnectionClass
             conn.Close();
         }
     }
+
+    public static List<Order> GetUserOrders(string _client_email)
+    {
+        string query = string.Format(@"SELECT * FROM orders
+                                        WHERE client_email='{0}'", _client_email);
+        command.CommandText = query;
+        List<Order> orderList = new List<Order>();
+
+        try
+        {
+            conn.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                int id = reader.GetInt32(0);
+                string client_email = reader.GetString(1);
+                int train_id = reader.GetInt32(2);
+                string train_num = reader.GetString(3);
+                int carr_num = reader.GetInt32(4);
+                int place_num = reader.GetInt32(5);
+                DateTime date = reader.GetDateTime(6);
+
+                Order order = new Order(client_email, train_id, train_num, carr_num, place_num, date);
+                orderList.Add(order);
+            }
+
+        }
+        finally
+        {
+            conn.Close();
+        }
+
+        return orderList;
+    }
 }
