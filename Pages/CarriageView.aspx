@@ -8,7 +8,7 @@
     <asp:Button ID="btnOK" runat="server" Text="До корзини" Visible="False" Width="100px" OnClick="btnOK_Click" />
     <asp:Button ID="btnCancel" runat="server" Text="Відміна" Visible="False" Width="100px" OnClick="btnCancel_Click" />
     <br />
-    <asp:Button ID="btnOrder" runat="server" Text="Купити!" OnClick="btnOrder_Click" />
+    <asp:Button ID="btnOrder" runat="server" Text="До корзини!" OnClick="btnOrder_Click" />
 
     <asp:Label ID="lblTrainInfo" runat="server" Text=""></asp:Label>
     <asp:Panel ID="pnlContent" runat="server">

@@ -20,6 +20,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             lblLogin.Visible = false;
             LinkButton1.Text = "Login";
         }
+        SetCarriage();
     }
 
 
@@ -35,6 +36,16 @@ public partial class MasterPage : System.Web.UI.MasterPage
             //User logs out
             Session.Clear();
             Response.Redirect("~/Pages/Home.aspx");
+        }
+    }
+
+    private void SetCarriage()
+    {
+        if (Session["orders"] == null)
+            lbtnCart.Text = string.Format("Корзина ({0})", 0);
+        else {
+            List<Order> orderList = (List<Order>)Session["orders"];
+            lbtnCart.Text = string.Format("Корзина ({0})", orderList.Count);
         }
     }
 }
