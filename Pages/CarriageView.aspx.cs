@@ -27,6 +27,7 @@ public partial class Pages_CarriageView : System.Web.UI.Page
                 Label lbl = new Label { Text = "Вагон № " + carr.num };
                 CarriagePrototype crp = PrototypeManager.GetCarriage(carr.type, carr);
                 SetPlaceEvantHandlers(crp.buttons);
+
                 pnlContent.Controls.Add(lbl);
                 pnlContent.Controls.Add(new Literal { Text = "<br />" });
                 pnlContent.Controls.Add(crp.panel);
@@ -133,8 +134,8 @@ public partial class Pages_CarriageView : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Session["orders"] = null;
-        orders_string.Clear();
+        //Session["orders"] = null;
+        //orders_string.Clear();
         btnOK.Visible = false;
         btnCancel.Visible = false;
         lblResult.Visible = false;
@@ -146,6 +147,8 @@ public partial class Pages_CarriageView : System.Web.UI.Page
     {
         if (Session["email"] == null)
         {
+            Session["orders"] = null;
+            orders_string.Clear();
             Response.Redirect("~/Pages/Account/Login.aspx");
         }
     }

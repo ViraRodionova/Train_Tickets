@@ -11,33 +11,30 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         if (Session["login"] != null)
         {
-            lblName.Text = Session["login"] + "Вітаємо на нашому порталі";
-            lbtnLogout.Visible = true;
+            lblLogin.Text = "Welcome " + Session["login"].ToString();
+            lblLogin.Visible = true;
+            LinkButton1.Text = "Logout";
         }
         else
         {
-            lblName.Text = "";
-            lbtnLogout.Visible = false;
+            lblLogin.Visible = false;
+            LinkButton1.Text = "Login";
         }
     }
 
-    protected void lbtnMyTicket_Click(object sender, EventArgs e)
+
+    protected void LinkButton1_Click(object sender, EventArgs e)
     {
-        ContentPlaceHolder1.Controls.Clear();
-        if (Session["login"] != null)
-        {
-            Response.Redirect("~/Pages/Account/PersonalPage.aspx");
-        }
-        else
+        //User Logs in
+        if (LinkButton1.Text == "Login")
         {
             Response.Redirect("~/Pages/Account/Login.aspx");
         }
-    }
-
-    protected void lbtnLogout_Click(object sender, EventArgs e)
-    {
-        Session["login"] = null;
-        Session["type"] = null;
-        Response.Redirect("~/Pages/Home.aspx");
+        else
+        {
+            //User logs out
+            Session.Clear();
+            Response.Redirect("~/Pages/Home.aspx");
+        }
     }
 }

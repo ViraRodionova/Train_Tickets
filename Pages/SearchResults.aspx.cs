@@ -87,7 +87,7 @@ public partial class Pages_SearchResults : System.Web.UI.Page
             case 'P':
                 par = "r";
                 break;
-            case 'K':
+            case 'C':
                 par = "c";
                 break;
             case 'L':

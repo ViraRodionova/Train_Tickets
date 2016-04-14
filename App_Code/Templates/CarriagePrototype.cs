@@ -6,13 +6,11 @@ using System.Web;
 using System.Web.UI.WebControls;
 using System.Web.UI;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 /// <summary>
 /// Summary description for CarriagePrototype
 /// </summary>
 /// 
-[Serializable]
 public abstract class CarriagePrototype
 {
     //Carriage carriage;
@@ -69,18 +67,18 @@ public abstract class CarriagePrototype
 
     public CarriagePrototype Clone()
     {
-        using (var ms = new MemoryStream())
-        {
-            var formatter = new BinaryFormatter();
-            formatter.Serialize(ms, this);
-            ms.Position = 0;
+        //using (var ms = new MemoryStream())
+        //{
+        //    var formatter = new BinaryFormatter();
+        //    formatter.Serialize(ms, this);
+        //    ms.Position = 0;
 
-            return (CarriagePrototype)formatter.Deserialize(ms);
-        }
+        //return (CarriagePrototype)formatter.Deserialize(ms);
+        //}
+        return null;
     }
 }
 
-[Serializable]
 class CarriageReserved : CarriagePrototype
 {
     public CarriageReserved(int carrNum)
@@ -145,44 +143,79 @@ class CarriageReserved : CarriagePrototype
     }
 }
 
-[Serializable]
 class CarriageCoupe : CarriagePrototype
 {
-    public CarriageCoupe()
+    public CarriageCoupe(int carrNum)
     {
-        for (int i = 1; i < 37; i++)
+        for (int i = 1; i < 37; i += 2)
         {
             Button place = new Button
             {
                 Text = i.ToString(),
-                CssClass = "PlaceCoupe",
-                CausesValidation = false
-                //ID = "place_" + i.ToString()
+                CssClass = "PlaceReservedA",
+                CausesValidation = false,
+                ID = "place_" + i.ToString() + "_" + carrNum
             };
-            //place.Click += Place_Click;
             buttons.Add(place);
-            //panel.Controls.Add(place);
+            panel.Controls.Add(place);
+            if (i % 4 == 1) panel.Controls.Add(
+                new Button
+                {
+                    Text = "",
+                    CssClass = "PlaceReservedA",
+                    CausesValidation = false,
+                });
+            //if (i % 4 == 1) panel.Controls.Add(new Panel { Width = 40, Height = 40 });
+        }
+
+        panel.Controls.Add(new Literal { Text = "<br />" });
+
+        for (int i = 2; i < 37; i += 2)
+        {
+            Button place = new Button
+            {
+                Text = i.ToString(),
+                CssClass = "PlaceReservedA",
+                CausesValidation = false,
+                ID = "place_" + i.ToString() + "_" + carrNum
+            };
+            buttons.Add(place);
+            panel.Controls.Add(place);
+            if (i % 4 == 2) panel.Controls.Add(
+                new Button
+                {
+                    Text = "",
+                    CssClass = "PlaceReservedA",
+                    CausesValidation = false,
+                });
         }
     }
 }
 
-[Serializable]
 class CarriageLux : CarriagePrototype
 {
-    public CarriageLux()
+    public CarriageLux(int carrNum)
     {
-        for (int i = 1; i < 21; i++)
+        for (int i = 1; i < 21; i += 1)
         {
             Button place = new Button
             {
                 Text = i.ToString(),
                 CssClass = "PlaceLux",
-                CausesValidation = false
-                //ID = "place_" + i.ToString()
+                CausesValidation = false,
+                ID = "place_" + i.ToString() + "_" + carrNum
             };
-            //place.Click += Place_Click;
             buttons.Add(place);
-            //panel.Controls.Add(place);
+            panel.Controls.Add(place);
+
+            if (i % 2 == 1) panel.Controls.Add(
+                new Button
+                {
+                    Text = "",
+                    CssClass = "PlaceLux",
+                    CausesValidation = false,
+                });
+            //if (i % 4 == 1) panel.Controls.Add(new Panel { Width = 40, Height = 40 });
         }
     }
 }
@@ -204,10 +237,10 @@ public class PrototypeManager
                 carr = new CarriageReserved(current.num);
                 break;
             case 'c':
-                carr = new CarriageCoupe();
+                carr = new CarriageCoupe(current.num);
                 break;
             case 'l':
-                carr = new CarriageLux();
+                carr = new CarriageLux(current.num);
                 break;
         }
         carr.CheckFreePlaces(current);

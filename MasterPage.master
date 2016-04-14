@@ -20,20 +20,20 @@
 
     <div id="wrapper">
 
-        <div id="banner">
-            <asp:Image ID="imgLogo" runat="server" ImageUrl="~/images/banner.png" />
-            
-            <div id="personalPage">
-                <asp:Image ID="Image1" runat="server" />
-                <asp:LinkButton ID="lbtnMyTicket" runat="server" OnClick="lbtnMyTicket_Click">Мій квиток</asp:LinkButton>
-                <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
-                <br />
-                <asp:LinkButton ID="lbtnLogout" runat="server" OnClick="lbtnLogout_Click">Вийти</asp:LinkButton>
-                <br />
-                <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
-            </div>
+        <div id="navigation">
+                <ul class="listMenu">
+                    <li><asp:Image ID="Image2" runat="server" ImageUrl="~/images/banner.png" />
+                        <a href='<%= Page.ResolveUrl("~/Pages/Home.aspx") %>'>На головну</a></li>
+                    <li><a href="#">Корзина</a></li>
+                    <li><a href='<%= Page.ResolveUrl("~/Pages/Account/PersonalPage.aspx") %>'>Мої замовлення</a></li>
+                </ul>
 
-        </div>
+                <div id="login" align="right">
+                    <asp:Label ID="lblLogin" runat="server" Text="" ForeColor="White"></asp:Label>
+                    <asp:LinkButton ID="LinkButton1" runat="server" ForeColor="White" OnClick="LinkButton1_Click">LinkButton</asp:LinkButton>
+                </div>
+
+            </div>
 
         <div id="content_area">
             <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
