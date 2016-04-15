@@ -7,7 +7,7 @@
     <title>Rodionova Tickets</title>
 
     <asp:ContentPlaceHolder id="head" runat="server">
-        <script type="text/javascript" src='<%= Page.ResolveUrl("~/JavaScript/jquery-ui.min.js") %>'></script>
+
     </asp:ContentPlaceHolder>
 
     <link rel="stylesheet" type="text/css" href="~/Styles/style.css"/>
