@@ -51,7 +51,7 @@ public partial class Pages_SearchResults : System.Web.UI.Page
         }
         catch (NullReferenceException)
         {
-            pnlTrains.Controls.Add(new Label { Text = "За даним маршрутом не знайдено потягів" });
+            pnlTrains.Controls.Add(new Label { Text = Language.GetLang().SearchRes_NoTrains() });
         }
     }
 

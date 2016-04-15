@@ -350,9 +350,9 @@ public static class ConnectionClass
                     user.Email, user.Password, user.Name, user.Surname, user.Phone, user.Type);
                 command.CommandText = query;
                 command.ExecuteNonQuery();
-                return "Користувача зареєстровано!";
+                return Language.GetLang().ConnClass_RegisterUserOk();
             }
-            else return "Користувач з такою електронною поштою вже був зареєстрований на сайті";
+            else return Language.GetLang().ConnClass_RegisterUserFail();
         }
         finally
         {

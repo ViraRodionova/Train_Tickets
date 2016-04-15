@@ -19,7 +19,9 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style1">Пароль:</td>
+            <td class="auto-style1">
+                <asp:Label ID="lblPass" runat="server" Text=""></asp:Label>
+            </td>
             <td><asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
@@ -30,7 +32,7 @@
                 <br />
                 <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
                 <br />
-                <asp:LinkButton ID="LinkButton2" runat="server" PostBackUrl="~/Pages/Account/Registration.aspx" CausesValidation="False">Зареєструватися</asp:LinkButton>
+                <asp:LinkButton ID="lbtnReg" runat="server" PostBackUrl="~/Pages/Account/Registration.aspx" CausesValidation="False">Зареєструватися</asp:LinkButton>
             </td>
         </tr>
     </table>

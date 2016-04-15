@@ -11,6 +11,13 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         GenerateOrderReview();
+        SetButtonsNames();
+    }
+
+    private void SetButtonsNames()
+    {
+        btnOK.Text = Language.GetLang().Cart_OkBtn();
+        btnCancel.Text = Language.GetLang().Cart_CancelBtn();
     }
 
     private void GenerateOrderReview()
@@ -23,12 +30,13 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
 
             StringBuilder sb = new StringBuilder();
             sb.Append("<table>");
-            sb.Append("<h3>Please review your order</h3>");
+            sb.Append(Language.GetLang().Cart_TableHeader());
+            /*sb.Append("<h3>Please review your order</h3>");
             sb.Append(@"<tr>
                                         <td width = '50px'>Поїзд</td>
                                         <td width = '50px'>Вагон</td>
                                         <td width = '50px'>Місце</td>
-                                    </tr>");
+                                    </tr>");*/
 
             foreach (Order order in orderList)
             {

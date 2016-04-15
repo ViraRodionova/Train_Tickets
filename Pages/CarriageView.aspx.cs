@@ -15,6 +15,7 @@ public partial class Pages_CarriageView : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         GetCarriages();
+        btnOrder.Text = Language.GetLang().CarrView_ToCartBtn();
     }
 
     private void GetCarriages()
@@ -24,7 +25,7 @@ public partial class Pages_CarriageView : System.Web.UI.Page
         {
             if(carr.type == Request.QueryString["carType"][0])
             {
-                Label lbl = new Label { Text = "Вагон № " + carr.num };
+                Label lbl = new Label { Text = Language.GetLang().CarrView_CarrName() + " № " + carr.num };
                 CarriagePrototype crp = PrototypeManager.GetCarriage(carr.type, carr);
                 SetPlaceEvantHandlers(crp.buttons);
 
@@ -135,7 +136,7 @@ public partial class Pages_CarriageView : System.Web.UI.Page
         Response.Redirect("~/Pages/Home.aspx");
     }
 
-    protected void btnCancel_Click(object sender, EventArgs e)
+    /*protected void btnCancel_Click(object sender, EventArgs e)
     {
         //Session["orders"] = null;
         //orders_string.Clear();
@@ -144,7 +145,7 @@ public partial class Pages_CarriageView : System.Web.UI.Page
         lblResult.Visible = false;
         pnlContent.Visible = true;
         //Response.Redirect("~/Pages/Home.aspx");
-    }
+    }*/
 
     private void Authenticate()
     {

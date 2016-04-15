@@ -24,14 +24,15 @@ public partial class Pages_Account_PersonalPage : System.Web.UI.Page
 
             StringBuilder sb = new StringBuilder();
             sb.Append("<table>");
-            sb.Append("<h3>Ваші замовлення</h3>");
+            sb.Append(Language.GetLang().PersPage_TableHeader());
+            /*sb.Append("<h3>Ваші замовлення</h3>");
             sb.Append(@"<tr>
                                         <td width = '150px'>Поїзд</td>
                                         <td width = '150px'>Вагон</td>
                                         <td width = '150px'>Місце</td>
                                         <td width = '200px'>Ціна</td>
                                         <td width = '250px'>Дата покупки</td>
-                                    </tr><hr>");
+                                    </tr><hr>");*/
 
             foreach (Order order in orderList)
             {

@@ -36,7 +36,7 @@ public class LoginError : HandlerBase
         }
         else
         {
-            control.Controls.Add(new Label { Text = "Ви не авторизувалися на сайті. Перейдіть на сторінку \"Увійти\" й увійдіть на сайт" });
+            control.Controls.Add(new Label { Text = Language.GetLang().Handler_LoginError() });
         }
     }
 }
@@ -47,7 +47,7 @@ public class NoOrdersError : HandlerBase
     {
         if(page.Session["orders"] == null)
         {
-            control.Controls.Add(new Label { Text = "Ваш кошик порожній" });
+            control.Controls.Add(new Label { Text = Language.GetLang().Handler_NoClientOrders() });
         }
         else if(_successor != null)
         {
@@ -62,7 +62,7 @@ public class NoOrdersInDB : HandlerBase
     {
         if(list == null)
         {
-            control.Controls.Add(new Label { Text = "У Вас ще не було замовлень на нашому сайті" });
+            control.Controls.Add(new Label { Text = Language.GetLang().Handler_NoOrdersInDB() });
         }
         else if(_successor != null)
         {

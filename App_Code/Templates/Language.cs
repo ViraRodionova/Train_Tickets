@@ -9,7 +9,7 @@ using System.Web;
 
 public abstract class State
 {
-    protected string state;
+    public string state;
 
     public abstract string ConnClass_RegisterUserOk();
     public abstract string ConnClass_RegisterUserFail();
@@ -22,14 +22,14 @@ public abstract class State
     public abstract string Cart_TableHeader();
     public abstract string Cart_OkBtn();
     public abstract string Cart_CancelBtn();
-    //public abstract string Login_Failed();
+    public abstract string Login_Failed();
     //public abstract string Login_LoginBtn();
     public abstract string PersPage_TableHeader();
     public abstract string Reg_NameLbl();
     public abstract string Reg_SurnameLbl();
     public abstract string Reg_PasswordLbl();
     public abstract string Reg_ConfirmPassLbl();
-    public abstract string Reg_ConfirmValidator();
+    public abstract string Reg_CompareValidator();
     public abstract string Reg_Phone();
     public abstract string Reg_RegBtn();
     public abstract string CarrView_CarrName();
@@ -38,6 +38,7 @@ public abstract class State
     public abstract string SearchRes_NoTrains();
     public abstract string Master_Login();
     public abstract string Master_LogOut();
+    public abstract string Master_Greeting();
     public abstract string Master_Home();
     public abstract string Master_Cart();
     public abstract string Master_ClientOrders();
@@ -120,10 +121,10 @@ public class UkrainianLang : State
         return "Пошук";
     }
 
-    //public override string Login_Failed()
-    //{
-    //    throw new NotImplementedException();
-    //}
+    public override string Login_Failed()
+    {
+        return "Авторизація провалилася";
+    }
 
     //public override string Login_LoginBtn()
     //{
@@ -172,7 +173,7 @@ public class UkrainianLang : State
         return "Повторіть пароль:";
     }
 
-    public override string Reg_ConfirmValidator()
+    public override string Reg_CompareValidator()
     {
         return "Паролі не співпадають";
     }
@@ -205,6 +206,11 @@ public class UkrainianLang : State
     public override string SearchRes_NoTrains()
     {
         return "За даним маршрутом не знайдено потягів";
+    }
+
+    public override string Master_Greeting()
+    {
+        return "Вітаємо Вас, ";
     }
 }
 
@@ -285,10 +291,10 @@ public class EnglishLang : State
         return "Search";
     }
 
-    //public override string Login_Failed()
-    //{
-    //    throw new NotImplementedException();
-    //}
+    public override string Login_Failed()
+    {
+        return "Login failed";
+    }
 
     //public override string Login_LoginBtn()
     //{
@@ -337,7 +343,7 @@ public class EnglishLang : State
         return "Confirm the password:";
     }
 
-    public override string Reg_ConfirmValidator()
+    public override string Reg_CompareValidator()
     {
         return "Passwords don't match";
     }
@@ -371,11 +377,17 @@ public class EnglishLang : State
     {
         return "On this route no trains found";
     }
+
+    public override string Master_Greeting()
+    {
+        return "Welcome, ";
+    }
 }
 
 public static class Language
 {
     static State language;
+    static string lang;
 
     static Language()
     {
@@ -387,15 +399,22 @@ public static class Language
         return language;
     }
 
-    public static void ChangeLanguage(string lang)
+    public static string GetState()
     {
-        switch (lang)
+        return lang;
+    }
+
+    public static void ChangeLanguage(string _lang)
+    {
+        switch (_lang)
         {
             case "eng":
                 language = new EnglishLang();
+                lang = _lang;
                 break;
             default:
                 language = new UkrainianLang();
+                lang = "ukr";
                 break;
         }
     }

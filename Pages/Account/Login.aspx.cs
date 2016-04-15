@@ -9,7 +9,9 @@ public partial class Pages_Account_Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        lblPass.Text = Language.GetLang().Reg_PasswordLbl();
+        btnLogin.Text = Language.GetLang().Master_Login();
+        lbtnReg.Text = Language.GetLang().Reg_RegBtn();
     }
 
     protected void btnLogin_Click(object sender, EventArgs e)
@@ -28,7 +30,7 @@ public partial class Pages_Account_Login : System.Web.UI.Page
         }
         else
         {
-            lblError.Text = "Login failed";
+            lblError.Text = Language.GetLang().Login_Failed();
         }
     }
 }

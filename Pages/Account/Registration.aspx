@@ -10,14 +10,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <table>
         <tr>
-            <td>Ім'я:</td>
+            <td>
+                <asp:Label ID="lblName" runat="server" Text=""></asp:Label></td>
             <td class="auto-style1">
                 <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
-            <td>Прізвище:</td>
+            <td>
+                <asp:Label ID="lblSurname" runat="server" Text=""></asp:Label></td>
             <td class="auto-style1">
                 <asp:TextBox ID="txtSurname" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtSurname" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -31,21 +33,27 @@
             </td>
         </tr>
         <tr>
-            <td>Пароль:</td>
+            <td>
+                <asp:Label ID="lblPass" runat="server" Text="Label"></asp:Label>
+            </td>
             <td class="auto-style1">
                 <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
-            <td>Повторіть пароль:</td>
+            <td>
+                <asp:Label ID="lblConfirmPass" runat="server" Text="Label"></asp:Label>
+            </td>
             <td class="auto-style1">
                 <asp:TextBox ID="txtConfirmPass" runat="server"></asp:TextBox>
                 <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtConfirmPass" ControlToValidate="txtPassword" ErrorMessage="Паролі не співпадають" ForeColor="Red"></asp:CompareValidator>
             </td>
         </tr>
         <tr>
-            <td>Телефон:</td>
+            <td>
+                <asp:Label ID="lblPhone" runat="server" Text="Label"></asp:Label>
+            </td>
             <td class="auto-style1">
                 <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*" ControlToValidate="txtPhone" ForeColor="Red"></asp:RequiredFieldValidator>

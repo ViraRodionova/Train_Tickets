@@ -28,6 +28,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
     
     protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
     {
+        Session["lang"] = true;
+        Session["getTrains"] = true;
         Language.ChangeLanguage(ddlLanguage.SelectedValue);
         UpdateControls();
         Response.Redirect(Request.RawUrl);
@@ -38,7 +40,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         lbtnHome.Text = Language.GetLang().Master_Home();
         SetCart();
         lbtnMyOrders.Text = Language.GetLang().Master_ClientOrders();
-        //lblLogin.Text = Language.GetLang().Master_Login();
         SetLogin();
     }
 
@@ -56,14 +57,14 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         if (Session["login"] != null)
         {
-            lblLogin.Text = "Welcome " + Session["login"].ToString();
+            lblLogin.Text = Language.GetLang().Master_Greeting() + Session["login"].ToString();
             lblLogin.Visible = true;
-            LinkButton1.Text = "Logout";
+            LinkButton1.Text = Language.GetLang().Master_LogOut();
         }
         else
         {
             lblLogin.Visible = false;
-            LinkButton1.Text = "Login";
+            LinkButton1.Text = Language.GetLang().Master_Login();
         }
     }
 }
