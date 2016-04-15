@@ -22,7 +22,7 @@
             <td class="auto-style1">
                 <asp:Label ID="lblPass" runat="server" Text=""></asp:Label>
             </td>
-            <td><asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+            <td><asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>

@@ -38,7 +38,7 @@
                 </ul>
 
                 <div id="login" align="right">
-                    <asp:DropDownList ID="ddlLanguage" runat="server" OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" AutoPostBack="True">
+                    <asp:DropDownList ID="ddlLanguage" runat="server" OnSelectedIndexChanged="ddlLanguage_SelectedIndexChanged" AutoPostBack="True" CssClass="Ddl" Width="100">
                         <asp:ListItem Value="rus">РУС</asp:ListItem>
                         <asp:ListItem Value="ukr">УКР</asp:ListItem>
                         <asp:ListItem Value="eng">ENG</asp:ListItem>

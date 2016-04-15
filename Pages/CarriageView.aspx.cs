@@ -61,42 +61,9 @@ public partial class Pages_CarriageView : System.Web.UI.Page
 
     private void GenerateReview()
     {
-        //double totalAmount = 0;
         List<Order> orderList = GetOrders();
-        Session["orders"] = orderList;
-        /*double price = 255.25;
-
-        StringBuilder sb = new StringBuilder();
-        sb.Append("<table>");
-        sb.Append("<h3>Please review your order</h3>");
-        sb.Append(@"<tr>
-                                        <td width = '50px'>Поїзд</td>
-                                        <td width = '50px'>Вагон</td>
-                                        <td width = '50px'>Місце</td>
-                                    </tr>");
-
-        foreach (Order order in orderList)
-        {
-            double totalRow = price;
-            sb.Append(String.Format(@"<tr>
-                                        <td width = '50px'>{0}</td>
-                                        <td width = '50px'>{1}</td>
-                                        <td width = '50px'>{2}</td>
-                                        <td>{3}</td><td>$</td>
-                                    </tr>",
-                                    order.TrainNum, order.CarriageNum, order.PlaceNum, String.Format("{0:0.00}", totalRow)));
-            totalAmount += totalRow;
-        }
-
-        sb.Append(String.Format(@"<tr>
-                                    <td><b>Total: </b></td>
-                                    <td><b>{0} $</b></td>
-                                </tr></table>", totalAmount));
-        lblResult.Text = sb.ToString();
-        lblResult.Visible = true;
-        btnOK.Visible = true;
-        btnCancel.Visible = true;
-        pnlContent.Visible = false;*/
+        if (Session["orders"] == null) Session["orders"] = orderList;
+        else ((List<Order>)Session["orders"]).AddRange(orderList);
     }
 
     private List<Order> GetOrders()
@@ -121,7 +88,6 @@ public partial class Pages_CarriageView : System.Web.UI.Page
     {
         Authenticate();
         GenerateReview();
-        //Page.Master.DataBind();
         orders_string.Clear();
         Response.Redirect(Request.RawUrl);
     }

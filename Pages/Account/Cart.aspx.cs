@@ -76,24 +76,14 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
         ConnectionClass.AddOrders(orderList);
         ConnectionClass.UpdateFreePlaces(orderList);
         Session["orders"] = null;
-        //Response.Redirect("~/Pages/Home.aspx");
-        pnlContent.Controls.Clear();
-        //pnlContent.Controls.Add(new Label { Text = "Ваша корзина порожня" });
-        //Page.DataBind();
+        pnlContent.Controls.Add(new Label { Text = Language.GetLang().Cart_Congradulations() });
         Response.Redirect(Request.RawUrl);
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         Session["orders"] = null;
-        //orders_string.Clear();
-
-        //lblResult.Visible = false;
-        //Response.Redirect("~/Pages/Home.aspx");
         pnlContent.Controls.Clear();
-        //pnlContent.Controls.Add(new Label { Text = "Ваша корзина порожня" });
-
-        //Page.DataBind();
         Response.Redirect(Request.RawUrl);
     }
 }

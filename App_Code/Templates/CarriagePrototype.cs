@@ -94,13 +94,13 @@ class CarriageReserved : CarriagePrototype
             };
             buttons.Add(place);
             panel.Controls.Add(place);
+
             if (i % 4 == 1) panel.Controls.Add(
-                new Button {
+                new Label {
                     Text = "",
-                    CssClass = "PlaceReservedA",
-                    CausesValidation = false,
+                    //CssClass = "PlaceReservedA",
+                    Width = 40
             });
-            //if (i % 4 == 1) panel.Controls.Add(new Panel { Width = 40, Height = 40 });
         }
 
         panel.Controls.Add(new Literal { Text = "<br />" });
@@ -117,11 +117,11 @@ class CarriageReserved : CarriagePrototype
             buttons.Add(place);
             panel.Controls.Add(place);
             if (i % 4 == 2) panel.Controls.Add(
-                new Button
+                new Label
                 {
                     Text = "",
-                    CssClass = "PlaceReservedA",
-                    CausesValidation = false,
+                    //CssClass = "PlaceReservedA",
+                    Width = 40
                 });
         }
 
@@ -159,13 +159,12 @@ class CarriageCoupe : CarriagePrototype
             buttons.Add(place);
             panel.Controls.Add(place);
             if (i % 4 == 1) panel.Controls.Add(
-                new Button
+                new Label
                 {
                     Text = "",
-                    CssClass = "PlaceReservedA",
-                    CausesValidation = false,
+                    //CssClass = "PlaceReservedA",
+                    Width = 40
                 });
-            //if (i % 4 == 1) panel.Controls.Add(new Panel { Width = 40, Height = 40 });
         }
 
         panel.Controls.Add(new Literal { Text = "<br />" });
@@ -182,11 +181,11 @@ class CarriageCoupe : CarriagePrototype
             buttons.Add(place);
             panel.Controls.Add(place);
             if (i % 4 == 2) panel.Controls.Add(
-                new Button
+                new Label
                 {
                     Text = "",
-                    CssClass = "PlaceReservedA",
-                    CausesValidation = false,
+                    //CssClass = "PlaceReservedA",
+                    Width = 40
                 });
         }
     }
@@ -209,13 +208,12 @@ class CarriageLux : CarriagePrototype
             panel.Controls.Add(place);
 
             if (i % 2 == 1) panel.Controls.Add(
-                new Button
+                new Label
                 {
                     Text = "",
-                    CssClass = "PlaceLux",
-                    CausesValidation = false,
+                    //CssClass = "PlaceLux",
+                    Width = 40
                 });
-            //if (i % 4 == 1) panel.Controls.Add(new Panel { Width = 40, Height = 40 });
         }
     }
 }

@@ -34,29 +34,31 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblPass" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="lblPass" runat="server"></asp:Label>
             </td>
             <td class="auto-style1">
-                <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblConfirmPass" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="lblConfirmPass" runat="server"></asp:Label>
             </td>
             <td class="auto-style1">
-                <asp:TextBox ID="txtConfirmPass" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtConfirmPass" runat="server" TextMode="Password"></asp:TextBox>
                 <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtConfirmPass" ControlToValidate="txtPassword" ErrorMessage="Паролі не співпадають" ForeColor="Red"></asp:CompareValidator>
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblPhone" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="lblPhone" runat="server"></asp:Label>
             </td>
             <td class="auto-style1">
                 <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*" ControlToValidate="txtPhone" ForeColor="Red"></asp:RequiredFieldValidator>
+                <br />
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtPhone" ErrorMessage="+380XXXXXXXXX" ForeColor="Red" ValidationExpression="\+380[1-9]{2}[0-9]{7}"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>

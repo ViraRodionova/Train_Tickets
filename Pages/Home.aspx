@@ -7,9 +7,9 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">     
     <ContentTemplate>
 
-    <asp:CheckBox ID="cbOne" runat="server" Checked="True" OnCheckedChanged="cbOne_CheckedChanged" Text="В одну сторону" AutoPostBack="True" Width="259px" CssClass="squaredThree" />
+    <asp:CheckBox ID="cbOne" runat="server" Checked="True" OnCheckedChanged="cbOne_CheckedChanged" Text="В одну сторону" AutoPostBack="True" Width="259px" CssClass="squaredThree" Visible="False" />
 &nbsp;&nbsp;&nbsp;
-    <asp:CheckBox ID="cbTwo" runat="server" OnCheckedChanged="cbTwo_CheckedChanged" Text="В обидві сторони" AutoPostBack="True" Width="250px" CssClass="squaredThree" />
+    <asp:CheckBox ID="cbTwo" runat="server" OnCheckedChanged="cbTwo_CheckedChanged" Text="В обидві сторони" AutoPostBack="True" Width="250px" CssClass="squaredThree" Visible="False" />
     <br />
     <asp:DropDownList ID="ddlFrom" runat="server" DataSourceID="sds_stations" DataTextField="station" DataValueField="station" CssClass="Ddl">
     </asp:DropDownList>
@@ -18,7 +18,7 @@
 
     <asp:ImageButton ID="btnReverse" runat="server" CausesValidation="False" Height="40px" OnClick="btnReverse_Click" Width="40px" ImageAlign="Middle" ImageUrl="~/images/b_refresh.png" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:DropDownList ID="ddlTo" runat="server" DataSourceID="sds_stations" DataTextField="station" DataValueField="station" CssClass="Ddl">
+    <asp:DropDownList ID="ddlTo" runat="server" DataSourceID="sds_stations" DataTextField="station" DataValueField="station" CssClass="Ddl" Height="40" Width="200">
     </asp:DropDownList>
 
     &nbsp;&nbsp;&nbsp;

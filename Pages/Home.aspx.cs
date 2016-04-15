@@ -16,8 +16,19 @@ public partial class Pages_Home : System.Web.UI.Page
         Session["getTrains"] = true;
         //ddlFrom.SelectedIndex = 3;
         //ddlTo.SelectedIndex = 4;
-        txtDateOne.Text = "4/24/2016";
+        //txtDateOne.Text = "4/24/2016";
+        
+        SetControls();
+    }
+
+    private void SetControls()
+    {
         btnSearch.Text = Language.GetLang().Home_SearchBtn();
+        txtDateOne_CalendarExtender.StartDate = new DateTime(2016, 04, 23);
+        txtDateOne_CalendarExtender.EndDate = new DateTime(2016, 04, 29);
+        if (Session["stFrom"] != null) ddlFrom.SelectedValue = Session["stFrom"].ToString();
+        if (Session["stTo"] != null) ddlTo.SelectedValue = Session["stTo"].ToString();
+        if (Session["dateTrain"] != null) txtDateOne.Text = Session["dateTrain"].ToString();
     }
 
     private void AddPlacesInDB()
@@ -91,20 +102,14 @@ public partial class Pages_Home : System.Web.UI.Page
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
+        Session["stFrom"] = ddlFrom.SelectedValue;
+        Session["stTo"] = ddlTo.SelectedValue;
+        Session["dateTrain"] = txtDateOne.Text;
+
+        if (ddlFrom.SelectedValue == ddlTo.SelectedValue) return;
         Response.Redirect("SearchResults.aspx?stFrom=" + ddlFrom.SelectedValue
             + "&stTo=" + ddlTo.SelectedValue
             + "&date=" + txtDateOne.Text.ToString());
-        
-        /*string[] stations = ConnectionClass.GetStations("");
-        StringBuilder sb = new StringBuilder();
-        foreach(string st in stations)
-        {
-            sb.Append(st);
-            sb.Append(", ");
-        }
-        lblResult.Text = sb.ToString();
-        Page.DataBind();
-        //InsertPlaces();*/
     }
 
     private void InsertPlaces()

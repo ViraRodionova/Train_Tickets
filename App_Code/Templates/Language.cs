@@ -22,6 +22,7 @@ public abstract class State
     public abstract string Cart_TableHeader();
     public abstract string Cart_OkBtn();
     public abstract string Cart_CancelBtn();
+    public abstract string Cart_Congradulations();
     public abstract string Login_Failed();
     //public abstract string Login_LoginBtn();
     public abstract string PersPage_TableHeader();
@@ -200,7 +201,7 @@ public class UkrainianLang : State
 
     public override string Reg_SurnameLbl()
     {
-        return "Прізвище";
+        return "Прізвище:";
     }
 
     public override string SearchRes_NoTrains()
@@ -211,6 +212,11 @@ public class UkrainianLang : State
     public override string Master_Greeting()
     {
         return "Вітаємо Вас, ";
+    }
+
+    public override string Cart_Congradulations()
+    {
+        return "Вітаємо з покупкою!";
     }
 }
 
@@ -370,7 +376,7 @@ public class EnglishLang : State
 
     public override string Reg_SurnameLbl()
     {
-        return "Surname";
+        return "Surname:";
     }
 
     public override string SearchRes_NoTrains()
@@ -381,6 +387,11 @@ public class EnglishLang : State
     public override string Master_Greeting()
     {
         return "Welcome, ";
+    }
+
+    public override string Cart_Congradulations()
+    {
+        return "Congratulations on your needs";
     }
 }
 
