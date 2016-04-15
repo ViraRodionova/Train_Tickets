@@ -3,6 +3,7 @@
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+            
 
     <asp:CheckBox ID="cbOne" runat="server" Checked="True" OnCheckedChanged="cbOne_CheckedChanged" Text="В одну сторону" AutoPostBack="True" Width="259px" CssClass="squaredThree" />
 &nbsp;&nbsp;&nbsp;
@@ -31,12 +32,11 @@
     <asp:TextBox ID="txtDateTwo" runat="server" Visible="False" Height="30px" Width="150px" CssClass="TextBoxCalendar"></asp:TextBox>
     <ajaxToolkit:CalendarExtender ID="txtDateTwo_CalendarExtender" runat="server" TargetControlID="txtDateTwo" />
     <br />
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
+    
 
     <asp:SqlDataSource ID="sds_stations" runat="server" ConnectionString="<%$ ConnectionStrings:Tickets_DBConnectionString %>" SelectCommand="SELECT DISTINCT station
 FROM routes"></asp:SqlDataSource>
-
-
+    
+            
     </asp:Content>
 

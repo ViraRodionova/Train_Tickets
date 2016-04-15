@@ -212,67 +212,72 @@ public class EnglishLang : State
 {
     public override string[] Builder_CarriageTypes()
     {
-        throw new NotImplementedException();
+        return new string[] { "Reserved", "Coupe", "Lux" };
     }
 
     public override string Builder_ChooseBtn()
     {
-        throw new NotImplementedException();
+        return "Choose";
     }
 
     public override string Builder_ShowFullRouteLbtn()
     {
-        throw new NotImplementedException();
+        return "Show full route";
     }
 
     public override string CarrView_CarrName()
     {
-        throw new NotImplementedException();
+        return "Carriage";
     }
 
     public override string CarrView_ToCartBtn()
     {
-        throw new NotImplementedException();
+        return "Add to cart";
     }
 
     public override string Cart_CancelBtn()
     {
-        throw new NotImplementedException();
+        return "Cancel";
     }
 
     public override string Cart_OkBtn()
     {
-        throw new NotImplementedException();
+        return "Buy";
     }
 
     public override string Cart_TableHeader()
     {
-        throw new NotImplementedException();
-    }
-
-    public override string ConnClass_RegisterUserFail()
-    {
-        throw new NotImplementedException();
+        return string.Format(@"<h3>Your order</h3>
+                                    <tr>
+                                        <td width = '50px'>Train</td>
+                                        <td width = '50px'>Carriage</td>
+                                        <td width = '50px'>Place</td>
+                                    </tr>");
     }
 
     public override string ConnClass_RegisterUserOk()
     {
-        throw new NotImplementedException();
+        return "User is registrated!";
+    }
+
+    public override string ConnClass_RegisterUserFail()
+    {
+        return "User with the same email has been already registrated!";
     }
 
     public override string Handler_LoginError()
     {
-        throw new NotImplementedException();
+        return "You didn't login. Go to \"Login\" page";
     }
 
     public override string Handler_NoClientOrders()
     {
-        throw new NotImplementedException();
+        return "Your cart is empty";
     }
 
     public override string Handler_NoOrdersInDB()
     {
-        throw new NotImplementedException();
+        return "Your hasn't bought any tickets on our site";
     }
 
     public override string Home_SearchBtn()
@@ -280,74 +285,91 @@ public class EnglishLang : State
         return "Search";
     }
 
+    //public override string Login_Failed()
+    //{
+    //    throw new NotImplementedException();
+    //}
+
+    //public override string Login_LoginBtn()
+    //{
+    //    return "Увійти";
+    //}
+
     public override string Master_Cart()
     {
-        throw new NotImplementedException();
+        return "Cart";
     }
 
     public override string Master_ClientOrders()
     {
-        throw new NotImplementedException();
+        return "My Orders";
     }
 
     public override string Master_Home()
     {
-        throw new NotImplementedException();
+        return "Home";
     }
 
     public override string Master_Login()
     {
-        throw new NotImplementedException();
+        return "Login";
     }
 
     public override string Master_LogOut()
     {
-        throw new NotImplementedException();
+        return "Logout";
     }
 
     public override string PersPage_TableHeader()
     {
-        throw new NotImplementedException();
+        return string.Format(@"<h3>Your orders</h3>
+                                    <tr>
+                                        <td width = '150px'>Train</td>
+                                        <td width = '150px'>Carriage</td>
+                                        <td width = '150px'>Place</td>
+                                        <td width = '200px'>Price</td>
+                                        <td width = '250px'>Date of buying</td>
+                                    </tr><hr>");
     }
 
     public override string Reg_ConfirmPassLbl()
     {
-        throw new NotImplementedException();
+        return "Confirm the password:";
     }
 
     public override string Reg_ConfirmValidator()
     {
-        throw new NotImplementedException();
+        return "Passwords don't match";
     }
 
     public override string Reg_NameLbl()
     {
-        throw new NotImplementedException();
+        return "Name:";
     }
 
     public override string Reg_PasswordLbl()
     {
-        throw new NotImplementedException();
+        return "Password:";
     }
 
     public override string Reg_Phone()
     {
-        throw new NotImplementedException();
+        return "Phone:";
     }
 
     public override string Reg_RegBtn()
     {
-        throw new NotImplementedException();
+        return "Register";
     }
 
     public override string Reg_SurnameLbl()
     {
-        throw new NotImplementedException();
+        return "Surname";
     }
 
     public override string SearchRes_NoTrains()
     {
-        throw new NotImplementedException();
+        return "On this route no trains found";
     }
 }
 
