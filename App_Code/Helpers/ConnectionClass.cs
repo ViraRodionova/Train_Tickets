@@ -352,7 +352,7 @@ public static class ConnectionClass
                 command.ExecuteNonQuery();
                 return "Користувача зареєстровано!";
             }
-            else return "Користувача з такою електронною поштою вже зареєстровано";
+            else return "Користувач з такою електронною поштою вже був зареєстрований на сайті";
         }
         finally
         {

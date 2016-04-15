@@ -70,7 +70,7 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
         Session["orders"] = null;
         //Response.Redirect("~/Pages/Home.aspx");
         pnlContent.Controls.Clear();
-        pnlContent.Controls.Add(new Label { Text = "Ваша корзина порожня" });
+        //pnlContent.Controls.Add(new Label { Text = "Ваша корзина порожня" });
         Page.DataBind();
         
     }
@@ -83,7 +83,7 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
         //lblResult.Visible = false;
         //Response.Redirect("~/Pages/Home.aspx");
         pnlContent.Controls.Clear();
-        pnlContent.Controls.Add(new Label { Text = "Ваша корзина порожня" });
+        //pnlContent.Controls.Add(new Label { Text = "Ваша корзина порожня" });
         
         Page.DataBind();
 

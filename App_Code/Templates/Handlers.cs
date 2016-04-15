@@ -62,7 +62,7 @@ public class NoOrdersInDB : HandlerBase
     {
         if(list == null)
         {
-            control.Controls.Add(new Label { Text = "У Вас ще не біло замовлень на нашому сайті" });
+            control.Controls.Add(new Label { Text = "У Вас ще не було замовлень на нашому сайті" });
         }
         else if(_successor != null)
         {

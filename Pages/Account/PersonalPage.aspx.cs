@@ -29,8 +29,8 @@ public partial class Pages_Account_PersonalPage : System.Web.UI.Page
                                         <td width = '150px'>Поїзд</td>
                                         <td width = '150px'>Вагон</td>
                                         <td width = '150px'>Місце</td>
-                                        <td width = '150px'>Ціна</td>
-                                        <td width = '150px'>Дата покупки</td>
+                                        <td width = '200px'>Ціна</td>
+                                        <td width = '250px'>Дата покупки</td>
                                     </tr><hr>");
 
             foreach (Order order in orderList)
@@ -39,8 +39,8 @@ public partial class Pages_Account_PersonalPage : System.Web.UI.Page
                                         <td width = '150px'>{0}</td>
                                         <td width = '150px'>{1}</td>
                                         <td width = '150px'>{2}</td>
-                                        <td width = '150px'>{3} $</td>
-                                        <td width = '150px'>{4}</td>
+                                        <td width = '200px'>{3} $</td>
+                                        <td width = '250px'>{4}</td>
                                     </tr>",
                                         order.TrainNum, order.CarriageNum, order.PlaceNum, String.Format("{0:0.00}", price), order.Date));
             }

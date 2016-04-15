@@ -48,4 +48,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
             lbtnCart.Text = string.Format("Корзина ({0})", orderList.Count);
         }
     }
+
+    protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        Language.ChangeLanguage(ddlLanguage.SelectedValue);
+        Page.DataBind();
+    }
 }
