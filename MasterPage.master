@@ -26,7 +26,7 @@
                         <a href='<%= Page.ResolveUrl("~/Pages/Home.aspx") %>'>На головну</a></li>
                     <li>
                         <asp:LinkButton ID="lbtnCart" runat="server" PostBackUrl="~/Pages/Account/Cart.aspx">Корзина</asp:LinkButton>
-                        <a href='<%= Page.ResolveUrl("~/Pages/Account/Cart.aspx") %>'>Корзина</a></li>
+                    </li>
                     <li><a href='<%= Page.ResolveUrl("~/Pages/Account/PersonalPage.aspx") %>'>Мої замовлення</a></li>
                 </ul>
 

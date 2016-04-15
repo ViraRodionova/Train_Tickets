@@ -1,0 +1,142 @@
+﻿body {
+    font-family: 'Lucida Grande', Tahoma, Verdana, Arial, sans-serif;
+    background-image: url(../images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#wrapper {
+    margin: 0 auto;
+    padding: 10px;
+}
+
+#banner {
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    padding: 5px 10px 5px 10px;
+}
+
+#navigation{
+    height: 60px;
+    border: 3px solid #E3E3E3;
+    text-shadow: 0.1em 0.1em #333;
+}
+
+#nav{
+    list-style: none;
+}
+
+#nav ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    display:none;
+}
+
+#nav li{
+    font-size: 24px;
+    float:left;
+    position: relative;
+    width: 180px;
+    height: 50px;
+    display: inline;
+}
+
+#nav a:link, #nav a:active, #nav a:visited{
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+#nav a:hover{
+    color: lightblue;
+}
+
+.listMenu {
+  margin:0; 
+  padding:0;
+  list-style-type:none;
+  float: left;
+}
+.listMenu li {
+  font-family: Georgia, Times, serif;
+  display:inline;
+  padding:0px 4px;
+}
+.listMenu li a {
+  color:#fff;
+  text-decoration:none;
+}
+.listMenu li a:hover {
+  color:#000;
+  text-decoration:none;
+  border-bottom:3px solid #45A136;
+}
+
+#personalPage{
+    float: right;
+}
+
+#content_area {
+    margin: 20px 0px 0px 0px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.Ddl {
+    position: relative;
+    width: 200px;
+    height: 40px;
+    margin: 20px auto;
+    padding: 10px;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 1px 1px rgba(50,50,50,0.1);
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+    color: #45A136;
+    top: 0px;
+    left: 0px;
+}
+
+.BtnSearch{
+    position: relative;
+    width: 200px;
+    height: 40px;
+    margin: 20px auto;
+    padding: 10px;
+    background: #fff;
+    border-radius: 7px;
+    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 1px 1px rgba(50,50,50,0.1);
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+    color: #45A136;
+}
+
+.BtnSearch:hover{
+    background: #45A136;
+    color: #fff;
+}
+
+.TextBoxCalendar{
+    height: 20px;
+    width: 250px;
+    margin: 20px auto;
+    padding: 5px 10px;
+    background: #fff;
+    border-radius: 7px;
+    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 1px 1px rgba(50,50,50,0.1);
+    font-weight: bold;
+    color: #45A136;
+}
+
+.TextBoxCalendar:active, .TextBoxCalendar:focus{
+    border: 2px solid #45A136;
+}
