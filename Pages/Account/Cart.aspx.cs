@@ -10,9 +10,7 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //Authenticate();
         GenerateOrderReview();
-        //SetButtons();
     }
 
     private void GenerateOrderReview()
@@ -54,10 +52,11 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
             btnOK.Visible = true;
             btnCancel.Visible = true;
         }
-        catch(NullReferenceException e)
+        catch(NullReferenceException)
         {
             HandlerBase hb = new LoginError();
-            hb.ResolveProblem(this.Page, pnlContent, "I don't know");
+            hb.Successor = new NoOrdersError();
+            hb.ResolveProblem(this.Page, pnlContent, null);
             btnOK.Visible = false;
             btnCancel.Visible = false;
         }
@@ -73,6 +72,7 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
         pnlContent.Controls.Clear();
         pnlContent.Controls.Add(new Label { Text = "Ваша корзина порожня" });
         Page.DataBind();
+        
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
@@ -84,6 +84,8 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
         //Response.Redirect("~/Pages/Home.aspx");
         pnlContent.Controls.Clear();
         pnlContent.Controls.Add(new Label { Text = "Ваша корзина порожня" });
+        
         Page.DataBind();
+
     }
 }

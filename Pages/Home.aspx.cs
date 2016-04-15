@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,9 @@ public partial class Pages_Home : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        ddlFrom.SelectedIndex = 3;
-        ddlTo.SelectedIndex = 4;
+        Session["getTrains"] = true;
+        //ddlFrom.SelectedIndex = 3;
+        //ddlTo.SelectedIndex = 4;
         txtDateOne.Text = "4/24/2016";
     }
 
@@ -106,7 +108,7 @@ public partial class Pages_Home : System.Web.UI.Page
 
     private void InsertPlaces()
     {
-        List<Carriage> carriages = ConnectionClass.ListOfCarriagesID();
+        ArrayList carriages = ConnectionClass.ListOfCarriagesID();
 
         foreach(Carriage c in carriages)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -40,7 +41,7 @@ public class TrainOverviewBuilder : Builder
     {
         Panel panel = new Panel { CssClass = "left" };
 
-        List<string> route = ConnectionClass.GerFullRouteByTrain(train.TrainNum);
+        ArrayList route = ConnectionClass.GerFullRouteByTrain(train.TrainNum);
         
         Label lblNum = new Label { Text = train.TrainNum, CssClass = "lbl_num" };
         Label lblRoute = new Label { Text = string.Format(route[0] + "-" + route[route.Count - 1]), CssClass = "lbl_route" };

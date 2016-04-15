@@ -20,7 +20,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             lblLogin.Visible = false;
             LinkButton1.Text = "Login";
         }
-        SetCarriage();
+        SetCart();
     }
 
 
@@ -39,7 +39,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
     }
 
-    private void SetCarriage()
+    public void SetCart()
     {
         if (Session["orders"] == null)
             lbtnCart.Text = string.Format("Корзина ({0})", 0);

@@ -5,30 +5,26 @@ using System.Web;
 using System.Web.UI;
 using System.Web.SessionState;
 using System.Web.UI.WebControls;
+using System.Collections;
 
 /// <summary>
 /// Summary description for HandlesBase
 /// </summary>
 public abstract class HandlerBase
 {
-    protected static HandlerBase _successor;
+    protected HandlerBase _successor;
 
     public HandlerBase Successor
     {
         set { _successor = value; }
     }
 
-    public abstract void ResolveProblem(Page page, Control control, string message);
+    public abstract void ResolveProblem(Page page, Control control, ArrayList list);
 }
 
 public class LoginError : HandlerBase
 {
-    static LoginError()
-    {
-        _successor = new NoOrdersError();
-    }
-
-    public override void ResolveProblem(Page page, Control control, string message)
+    public override void ResolveProblem(Page page, Control control, ArrayList list)
     {
         if (page.Session["email"] == null)
         {
@@ -36,7 +32,7 @@ public class LoginError : HandlerBase
         }
         else if(_successor != null)
         {
-            _successor.ResolveProblem(page, control, message);
+            _successor.ResolveProblem(page, control, list);
         }
         else
         {
@@ -47,12 +43,7 @@ public class LoginError : HandlerBase
 
 public class NoOrdersError : HandlerBase
 {
-    static NoOrdersError()
-    {
-        _successor = null;
-    }
-
-    public override void ResolveProblem(Page page, Control control, string message)
+    public override void ResolveProblem(Page page, Control control, ArrayList list)
     {
         if(page.Session["orders"] == null)
         {
@@ -60,7 +51,22 @@ public class NoOrdersError : HandlerBase
         }
         else if(_successor != null)
         {
-            _successor.ResolveProblem(page, control, message);
+            _successor.ResolveProblem(page, control, list);
+        }
+    }
+}
+
+public class NoOrdersInDB : HandlerBase
+{
+    public override void ResolveProblem(Page page, Control control, ArrayList list)
+    {
+        if(list == null)
+        {
+            control.Controls.Add(new Label { Text = "У Вас ще не біло замовлень на нашому сайті" });
+        }
+        else if(_successor != null)
+        {
+            _successor.ResolveProblem(page, control, list);
         }
     }
 }

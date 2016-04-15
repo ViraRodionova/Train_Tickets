@@ -37,11 +37,11 @@ public static class ConnectionClass
         }
     }
 
-    public static List<Carriage> ListOfCarriagesID()
+    public static ArrayList ListOfCarriagesID()
     {
         string query = "SELECT * FROM carriages";
         command.CommandText = query;
-        List<Carriage> list = new List<Carriage>();
+        ArrayList list = new ArrayList();
 
         try
         {
@@ -64,10 +64,10 @@ public static class ConnectionClass
             conn.Close();
         }
 
+        if (list.Count == 0) return null;
         return list;
     }
 
-    [System.Web.Script.Services.ScriptMethod()]
     public static string[] GetStations(string st_name)
     {
         List<string> stations = new List<string>();
@@ -95,9 +95,9 @@ public static class ConnectionClass
         return stations.ToArray();
     }
 
-    public static List<string> GetTrainsNums(string st_from, string st_to)
+    public static ArrayList GetTrainsNums(string st_from, string st_to)
     {
-        List<string> trains = new List<string>();
+        ArrayList trains = new ArrayList();
 
         string query = string.Format(@"SELECT train_num
                                         FROM routes
@@ -125,9 +125,9 @@ public static class ConnectionClass
         return trains;
     }
 
-    public static List<int> GetTrainIDs(List<string> train_nums, DateTime date)
+    public static ArrayList GetTrainIDs(ArrayList train_nums, DateTime date)
     {
-        List<int> train_ids = new List<int>();
+        ArrayList train_ids = new ArrayList();
         string query;
         //string query = string.Format(@"SELECT id FROM trains
         //                                WHERE train_num IN ({0}
@@ -167,6 +167,7 @@ public static class ConnectionClass
             conn.Close();
             command.Parameters.Clear();
         }
+        if (train_ids.Count == 0) return null;
         return train_ids;
     }
 
@@ -258,12 +259,12 @@ public static class ConnectionClass
         return train;
     }
 
-    public static List<string> GerFullRouteByTrain(string train_num)
+    public static ArrayList GerFullRouteByTrain(string train_num)
     {
         string query = string.Format(@"SELECT station FROM routes
                                        WHERE train_num = '{0}'
                                        ORDER BY st_order", train_num);
-        List<string> stations = new List<string>();
+        ArrayList stations = new ArrayList();
 
         try
         {
@@ -416,12 +417,12 @@ public static class ConnectionClass
         }
     }
 
-    public static List<Order> GetUserOrders(string _client_email)
+    public static ArrayList GetUserOrders(string _client_email)
     {
         string query = string.Format(@"SELECT * FROM orders
                                         WHERE client_email='{0}'", _client_email);
         command.CommandText = query;
-        List<Order> orderList = new List<Order>();
+        ArrayList orderList = new ArrayList();
 
         try
         {
@@ -448,6 +449,7 @@ public static class ConnectionClass
             conn.Close();
         }
 
+        if (orderList.Count == 0) return null;
         return orderList;
     }
 }
