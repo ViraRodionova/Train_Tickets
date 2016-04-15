@@ -1,9 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Pages_Home" %>
 
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
+<%@ MasterType VirtualPath="../MasterPage.master" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-            
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">     
+    <ContentTemplate>
 
     <asp:CheckBox ID="cbOne" runat="server" Checked="True" OnCheckedChanged="cbOne_CheckedChanged" Text="В одну сторону" AutoPostBack="True" Width="259px" CssClass="squaredThree" />
 &nbsp;&nbsp;&nbsp;
@@ -37,6 +39,7 @@
     <asp:SqlDataSource ID="sds_stations" runat="server" ConnectionString="<%$ ConnectionStrings:Tickets_DBConnectionString %>" SelectCommand="SELECT DISTINCT station
 FROM routes"></asp:SqlDataSource>
     
-            
+    </ContentTemplate>
+    </asp:UpdatePanel>         
     </asp:Content>
 

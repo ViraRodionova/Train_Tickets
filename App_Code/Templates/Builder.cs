@@ -48,7 +48,7 @@ public class TrainOverviewBuilder : Builder
         LinkButton linkFullRoute = new LinkButton
         {
             ID = string.Format("lbtn_" + train.TrainNum + "_" + train.Id),
-            Text = "Показати повний шлях",
+            Text = Language.GetLang().Builder_ShowFullRouteLbtn(),
             CssClass = "lbtn_full_route"
         };
         Literal l1 = new Literal { Text = "<br />" };
@@ -149,7 +149,7 @@ public class TrainOverviewBuilder : Builder
         {
             ID = "btn_" + bId + "_" + train.TrainNum + "_" + train.Id,
             //OnClientClick = "Pages_SearchResults.ButtonChooseIsClicked",
-            Text = "Вибрати",
+            Text = Language.GetLang().Builder_ChooseBtn(),
         };
         //btnChoose.Click += Pages_SearchResults.ButtonChooseIsClicked;
         panel.Controls.Add(lblTypeFree);
@@ -213,13 +213,13 @@ public static class BuilderDirector
         }
 
         List<object> freeCarr = new List<object>();
-
+        string[] types = Language.GetLang().Builder_CarriageTypes();
         //if (freeP > 0)
-            freeCarr.Add(builder.SetCarriage("Плацкарт", freeP, "P", buttons));
+            freeCarr.Add(builder.SetCarriage(types[0], freeP, "P", buttons));
         //if (freeK > 0)
-            freeCarr.Add(builder.SetCarriage("Купе", freeC, "C", buttons));
+            freeCarr.Add(builder.SetCarriage(types[1], freeC, "C", buttons));
         //if (freeL > 0)
-            freeCarr.Add(builder.SetCarriage("Люкс", freeL, "L", buttons));
+            freeCarr.Add(builder.SetCarriage(types[2], freeL, "L", buttons));
 
         builder.SetPanelPlaces(freeCarr);
 

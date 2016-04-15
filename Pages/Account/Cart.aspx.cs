@@ -71,8 +71,8 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
         //Response.Redirect("~/Pages/Home.aspx");
         pnlContent.Controls.Clear();
         //pnlContent.Controls.Add(new Label { Text = "Ваша корзина порожня" });
-        Page.DataBind();
-        
+        //Page.DataBind();
+        Response.Redirect(Request.RawUrl);
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
@@ -84,8 +84,8 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
         //Response.Redirect("~/Pages/Home.aspx");
         pnlContent.Controls.Clear();
         //pnlContent.Controls.Add(new Label { Text = "Ваша корзина порожня" });
-        
-        Page.DataBind();
 
+        //Page.DataBind();
+        Response.Redirect(Request.RawUrl);
     }
 }

@@ -15,13 +15,22 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void LinkButton1_Click(object sender, EventArgs e)
     {
-        
+        if(Session["email"] == null)
+        {
+            Response.Redirect("~/Pages/Account/Login.aspx");
+        }
+        else
+        {
+            Session.Clear();
+            Response.Redirect("~/Pages/Home.aspx");
+        }
     }
     
     protected void ddlLanguage_SelectedIndexChanged(object sender, EventArgs e)
     {
         Language.ChangeLanguage(ddlLanguage.SelectedValue);
         UpdateControls();
+        Response.Redirect(Request.RawUrl);
     }
 
     private void UpdateControls()
@@ -29,8 +38,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
         lbtnHome.Text = Language.GetLang().Master_Home();
         SetCart();
         lbtnMyOrders.Text = Language.GetLang().Master_ClientOrders();
-        lblLogin.Text = Language.GetLang().Master_Login();
-        //SetLogin();
+        //lblLogin.Text = Language.GetLang().Master_Login();
+        SetLogin();
     }
 
     private void SetCart()
@@ -45,16 +54,16 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     private void SetLogin()
     {
-        //User Logs in
-        if (LinkButton1.Text == "Login")
+        if (Session["login"] != null)
         {
-            Response.Redirect("~/Pages/Account/Login.aspx");
+            lblLogin.Text = "Welcome " + Session["login"].ToString();
+            lblLogin.Visible = true;
+            LinkButton1.Text = "Logout";
         }
         else
         {
-            //User logs out
-            Session.Clear();
-            Response.Redirect("~/Pages/Home.aspx");
+            lblLogin.Visible = false;
+            LinkButton1.Text = "Login";
         }
     }
 }

@@ -18,7 +18,6 @@ public partial class Pages_Home : System.Web.UI.Page
         //ddlTo.SelectedIndex = 4;
         txtDateOne.Text = "4/24/2016";
         btnSearch.Text = Language.GetLang().Home_SearchBtn();
-        
     }
 
     private void AddPlacesInDB()

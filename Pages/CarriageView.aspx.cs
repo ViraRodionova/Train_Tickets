@@ -120,9 +120,9 @@ public partial class Pages_CarriageView : System.Web.UI.Page
     {
         Authenticate();
         GenerateReview();
-        Page.Master.DataBind();
+        //Page.Master.DataBind();
         orders_string.Clear();
-        
+        Response.Redirect(Request.RawUrl);
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
