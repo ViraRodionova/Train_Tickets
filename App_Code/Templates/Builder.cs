@@ -132,7 +132,6 @@ public class TrainOverviewBuilder : Builder
         foreach (Panel pnl in places)
         {
             panel.Controls.Add(pnl);
-            //panel.Controls.Add(new Literal { Text = "<br />" });
         }
 
         result.Controls.Add(panel);
@@ -150,10 +149,8 @@ public class TrainOverviewBuilder : Builder
         Button btnChoose = new Button
         {
             ID = "btn_" + bId + "_" + train.TrainNum + "_" + train.Id,
-            //OnClientClick = "Pages_SearchResults.ButtonChooseIsClicked",
             Text = Language.GetLang().Builder_ChooseBtn(),
         };
-        //btnChoose.Click += Pages_SearchResults.ButtonChooseIsClicked;
         panel.Controls.Add(lblTypeFree);
         panel.Controls.Add(btnChoose);
         buttons.Add(btnChoose);
@@ -286,10 +283,6 @@ public static class BuilderDirector
 {
     public static Panel GenerateTrainInfo(Builder builder, List<Button> buttons)
     {
-        builder.SetPanelRoute();
-        builder.SetPanelDeparture();
-        builder.SetPanelArrival();
-
         int freeP = 0, freeC = 0, freeL = 0;
         foreach(Carriage carr in builder.train.carriages)
         {
@@ -300,6 +293,11 @@ public static class BuilderDirector
 
         List<object> freeCarr = new List<object>();
         string[] types = Language.GetLang().Builder_CarriageTypes();
+
+
+        builder.SetPanelRoute();
+        builder.SetPanelDeparture();
+        builder.SetPanelArrival();
 
         if (freeP > 0) freeCarr.Add(builder.SetCarriage(types[0], freeP, "P", buttons));
         if (freeC > 0) freeCarr.Add(builder.SetCarriage(types[1], freeC, "C", buttons));
