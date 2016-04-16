@@ -10,6 +10,7 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        pnlContent.Controls.Add(SetHeaders());
         GenerateOrderReview();
         SetButtonsNames();
     }
@@ -25,12 +26,12 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
         try {
 
             List<Order> orderList = (List<Order>)Session["orders"];
-            double totalAmount = 0;
-            double price = 255.25;
+            //double totalAmount = 0;
+            //double price = 255.25;
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append("<table>");
-            sb.Append(Language.GetLang().Cart_TableHeader());
+            //StringBuilder sb = new StringBuilder();
+            //sb.Append("<table>");
+            //sb.Append(Language.GetLang().Cart_TableHeader());
             /*sb.Append("<h3>Please review your order</h3>");
             sb.Append(@"<tr>
                                         <td width = '50px'>Поїзд</td>
@@ -38,7 +39,7 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
                                         <td width = '50px'>Місце</td>
                                     </tr>");*/
 
-            foreach (Order order in orderList)
+            /*foreach (Order order in orderList)
             {
                 double totalRow = price;
                 sb.Append(String.Format(@"<tr>
@@ -55,10 +56,14 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
                                     <td><b>Total: </b></td>
                                     <td><b>{0} $</b></td>
                                 </tr></table>", totalAmount));
-            pnlContent.Controls.Add(new Label { Text = sb.ToString() });
+            pnlContent.Controls.Add(new Label { Text = sb.ToString() });*/
 
             btnOK.Visible = true;
             btnCancel.Visible = true;
+            foreach(Order order in orderList)
+            {
+                pnlContent.Controls.Add(BuilderDirector.GenerateCartPage(new OrdersOverviewBuilder(order)));
+            }
         }
         catch(NullReferenceException)
         {
@@ -85,5 +90,26 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
         Session["orders"] = null;
         pnlContent.Controls.Clear();
         Response.Redirect(Request.RawUrl);
+    }
+
+    private Panel SetHeaders()
+    {
+        Label lblTrain = new Label { Text = "Потяг" };
+        Label lblDep = new Label { Text = "Відправлення" };
+        Label lblArr = new Label { Text = "Прибуття" };
+        Label lblCarr = new Label { Text = "Вагон" };
+        Label lblPlace = new Label { Text = "Місце" };
+        Label lblPrice = new Label { Text = "Ціна" };
+        Literal l = new Literal { Text = "<br />" };
+        Panel panel = new Panel();
+        panel.Controls.Add(lblTrain);
+        panel.Controls.Add(lblDep);
+        panel.Controls.Add(lblArr);
+        panel.Controls.Add(lblCarr);
+        panel.Controls.Add(lblPlace);
+        panel.Controls.Add(lblPrice);
+        panel.Controls.Add(l);
+
+        return panel;
     }
 }

@@ -12,6 +12,8 @@ public static class DataBase
 {
     //public static List<Train> trains;
     public static Hashtable trains = new Hashtable();
+
+
     /*public static List<Button> placessButtons = new List<Button>();
 
     static DataBase()

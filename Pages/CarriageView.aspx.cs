@@ -22,6 +22,8 @@ public partial class Pages_CarriageView : System.Web.UI.Page
     {
         foreach(Carriage carr in ((Train)DataBase.trains[Convert.ToInt32(Request.QueryString["trainId"])])
             .carriages)
+        //foreach (Carriage carr in (ConnectionClass.DB[Convert.ToInt32(Request.QueryString["trainId"])])
+        //    .carriages)
         {
             if(carr.type == Request.QueryString["carType"][0])
             {
@@ -78,7 +80,7 @@ public partial class Pages_CarriageView : System.Web.UI.Page
             StringSplitOptions.RemoveEmptyEntries).ToArray();
             DateTime date = DateTime.Now;
             Order order = new Order(Session["email"].ToString(), trainId, trainNum,
-                Convert.ToInt32(placeInfo.GetValue(2)), Convert.ToInt32(placeInfo.GetValue(1)), date);
+                Convert.ToInt32(placeInfo.GetValue(2)), Convert.ToInt32(placeInfo.GetValue(1)), date, Session["stFrom"].ToString(), Session["stTo"].ToString());
             orderList.Add(order);
         }
         return orderList;

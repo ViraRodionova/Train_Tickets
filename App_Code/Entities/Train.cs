@@ -26,6 +26,7 @@ public abstract class Component
     public abstract void AddComponent(Component c);
     public abstract void RemoveComponent(Component c);
     public abstract int CountFreePlaces();
+    public abstract Place GetPlace(int carrNum, int placeNum);
 }
 
 //Composit
@@ -65,6 +66,19 @@ public class Train : Component
     public override void RemoveComponent(Component c)
     {
         carriages.Remove(c);
+    }
+
+    public override Place GetPlace(int carrNum, int placeNum)
+    {
+        Place res = null;
+
+        foreach(Component p in carriages)
+        {
+            res = p.GetPlace(carrNum, placeNum);
+            if (res != null) return res;
+        }
+
+        return res;
     }
 }
 
@@ -108,21 +122,40 @@ public class Carriage : Component
     {
         places.Remove(c);
     }
+
+    public override Place GetPlace(int carrNum, int placeNum)
+    {
+        Place res = null;
+
+        foreach (Component p in places)
+        {
+            if (this.num == carrNum)
+            {
+                res = p.GetPlace(carrNum, placeNum);
+                if (res != null) return res;
+            }
+        }
+
+        return res;
+    }
 }
 
 //Leaf
 public class Place : Component
 {
     public int num { get; set; }
+    public double Price { get; set; }
 
-    public Place(int Id, int num) : base(Id)
+    public Place(int Id, int num, double price) : base(Id)
     {
         this.num = num;
+        this.Price = price;
     }
 
-    public Place(int Id, int num, bool free) : base(Id, free)
+    public Place(int Id, int num, double price, bool free) : base(Id, free)
     {
         this.num = num;
+        this.Price = price;
     }
 
     public override void AddComponent(Component c) { }
@@ -134,4 +167,10 @@ public class Place : Component
     }
 
     public override void RemoveComponent(Component c) { }
+
+    public override Place GetPlace(int carrNum, int placeNum)
+    {
+        if (this.num == placeNum) return this;
+        return null;
+    }
 }

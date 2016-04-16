@@ -62,7 +62,7 @@ public partial class Pages_SearchResults : System.Web.UI.Page
         GetTrains(Request.QueryString["stFrom"], Request.QueryString["stTo"], Request.QueryString["date"]);
         //BuilderDirector bd = new BuilderDirector(Request.QueryString["stFrom"], Request.QueryString["stTo"]);
 
-        foreach(Train _train in trains)
+        foreach (Train _train in trains)
         {
             trainsPanel.Controls.Add(BuilderDirector.GenerateTrainInfo(
                 new TrainOverviewBuilder(_train, Request.QueryString["stFrom"], 
@@ -73,8 +73,25 @@ public partial class Pages_SearchResults : System.Web.UI.Page
 
         //DataBase.trains = trains;
 
+        pnlTrains.Controls.Add(SetHeaders());
         pnlTrains.Controls.Add(trainsPanel);
         Page.DataBind();
+    }
+
+    private Panel SetHeaders()
+    {
+        Label lblTrain = new Label { Text = "Потяг" };
+        Label lblDep = new Label { Text = "Відправлення" };
+        Label lblArr = new Label { Text = "Прибуття" };
+        Label lblCarr = new Label { Text = "Оберіть вагон" };
+        Literal l = new Literal { Text = "<br />" };
+        Panel panel = new Panel();
+        panel.Controls.Add(lblTrain);
+        panel.Controls.Add(lblDep);
+        panel.Controls.Add(lblArr);
+        panel.Controls.Add(lblCarr);
+        panel.Controls.Add(l);
+        return panel;
     }
 
     private void SetButtonsEventHandlers()

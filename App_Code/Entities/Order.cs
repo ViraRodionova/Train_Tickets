@@ -8,6 +8,7 @@ using System.Web;
 /// </summary>
 public class Order
 {
+
     public int Id { get; set; }
     public string UserEmail { get; set; }
     public int TrainId { get; set; }
@@ -15,8 +16,10 @@ public class Order
     public int CarriageNum { get; set; }
     public int PlaceNum { get; set; }
     public DateTime Date { get; set; }
+    public string StFrom { get; set; }
+    public string StTo { get; set; }
 
-    public Order(string userEmail, int trainId, string trainNum, int carriageNum, int placeNum, DateTime date)
+    public Order(string userEmail, int trainId, string trainNum, int carriageNum, int placeNum, DateTime date, string stFrom, string stTo)
     {
         UserEmail = userEmail;
         TrainId = trainId;
@@ -24,5 +27,7 @@ public class Order
         CarriageNum = carriageNum;
         PlaceNum = placeNum;
         Date = date;
+        StFrom = stFrom;
+        StTo = stTo;
     }
 }

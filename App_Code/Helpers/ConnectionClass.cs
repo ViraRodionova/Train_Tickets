@@ -218,8 +218,9 @@ public static class ConnectionClass
                 int car_id = reader.GetInt32(1);
                 int num = reader.GetInt32(2);
                 bool isFree = reader.GetBoolean(3);
+                double price = reader.GetDouble(4);
 
-                Place place = new Place(id, num, isFree);
+                Place place = new Place(id, num, price, isFree);
                 places.Add(place);
             }
         }
@@ -332,7 +333,7 @@ public static class ConnectionClass
         return null;
     }
 
-    public static string RegisterUser(User user)
+    public static bool RegisterUser(User user)
     {
         //Check if user exists
         string query = string.Format("SELECT COUNT(*) FROM users WHERE email = '{0}'", user.Email);
@@ -350,9 +351,9 @@ public static class ConnectionClass
                     user.Email, user.Password, user.Name, user.Surname, user.Phone, user.Type);
                 command.CommandText = query;
                 command.ExecuteNonQuery();
-                return Language.GetLang().ConnClass_RegisterUserOk();
+                return true;
             }
-            else return Language.GetLang().ConnClass_RegisterUserFail();
+            else return false;
         }
         finally
         {
@@ -364,7 +365,7 @@ public static class ConnectionClass
     {
         try
         {
-            command.CommandText = "INSERT INTO orders VALUES (@client, @trainId, @trainNum, @carriage, @place, @date)";
+            command.CommandText = "INSERT INTO orders VALUES (@client, @trainId, @trainNum, @carriage, @place, @date, @stFrom, @stTo)";
             conn.Open();
 
             foreach (Order order in orders)
@@ -375,6 +376,8 @@ public static class ConnectionClass
                 command.Parameters.Add(new SqlParameter("@carriage", order.CarriageNum));
                 command.Parameters.Add(new SqlParameter("@place", order.PlaceNum));
                 command.Parameters.Add(new SqlParameter("@date", order.Date));
+                command.Parameters.Add(new SqlParameter("@stFrom", order.StFrom));
+                command.Parameters.Add(new SqlParameter("@stTo", order.StTo));
 
                 command.ExecuteNonQuery();
                 command.Parameters.Clear();
@@ -438,8 +441,10 @@ public static class ConnectionClass
                 int carr_num = reader.GetInt32(4);
                 int place_num = reader.GetInt32(5);
                 DateTime date = reader.GetDateTime(6);
+                string st_from = reader.GetString(7);
+                string st_to = reader.GetString(8);
 
-                Order order = new Order(client_email, train_id, train_num, carr_num, place_num, date);
+                Order order = new Order(client_email, train_id, train_num, carr_num, place_num, date, st_from, st_to);
                 orderList.Add(order);
             }
 

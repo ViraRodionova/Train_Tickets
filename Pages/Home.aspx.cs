@@ -26,9 +26,9 @@ public partial class Pages_Home : System.Web.UI.Page
         btnSearch.Text = Language.GetLang().Home_SearchBtn();
         txtDateOne_CalendarExtender.StartDate = new DateTime(2016, 04, 23);
         txtDateOne_CalendarExtender.EndDate = new DateTime(2016, 04, 29);
-        if (Session["stFrom"] != null) ddlFrom.SelectedValue = Session["stFrom"].ToString();
-        if (Session["stTo"] != null) ddlTo.SelectedValue = Session["stTo"].ToString();
-        if (Session["dateTrain"] != null) txtDateOne.Text = Session["dateTrain"].ToString();
+        //if (Session["stFrom"] != null) ddlFrom.SelectedValue = Session["stFrom"].ToString();
+        //if (Session["stTo"] != null) ddlTo.SelectedValue = Session["stTo"].ToString();
+        //if (Session["dateTrain"] != null) txtDateOne.Text = Session["dateTrain"].ToString();
     }
 
     private void AddPlacesInDB()

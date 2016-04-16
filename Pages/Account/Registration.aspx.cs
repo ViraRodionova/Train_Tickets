@@ -30,6 +30,20 @@ public partial class Pages_Account_Registration : System.Web.UI.Page
             txtSurname.Text, txtPhone.Text, "user");
 
         //Register the user and return a result message
-        lblResult.Text = ConnectionClass.RegisterUser(user);
+        if (ConnectionClass.RegisterUser(user))
+        {
+            lblResult.Text = Language.GetLang().ConnClass_RegisterUserOk();
+            Session["login"] = user.Name;
+            Session["type"] = user.Type;
+            Session["email"] = user.Email;
+
+            Response.Redirect("~/Pages/Home.aspx");
+        }
+        else lblResult.Text = Language.GetLang().ConnClass_RegisterUserFail();
+
+        txtName.Text = "";
+        txtSurname.Text = "";
+        txtEmail.Text = "";
+        txtPhone.Text = "";
     }
 }
