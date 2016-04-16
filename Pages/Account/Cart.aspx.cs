@@ -26,50 +26,23 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
         try {
 
             List<Order> orderList = (List<Order>)Session["orders"];
-            //double totalAmount = 0;
-            //double price = 255.25;
 
-            //StringBuilder sb = new StringBuilder();
-            //sb.Append("<table>");
-            //sb.Append(Language.GetLang().Cart_TableHeader());
-            /*sb.Append("<h3>Please review your order</h3>");
-            sb.Append(@"<tr>
-                                        <td width = '50px'>Поїзд</td>
-                                        <td width = '50px'>Вагон</td>
-                                        <td width = '50px'>Місце</td>
-                                    </tr>");*/
+            if (orderList == null || orderList.Count == 0) throw new TermWorkExeption();
 
-            /*foreach (Order order in orderList)
-            {
-                double totalRow = price;
-                sb.Append(String.Format(@"<tr>
-                                        <td width = '50px'>{0}</td>
-                                        <td width = '50px'>{1}</td>
-                                        <td width = '50px'>{2}</td>
-                                        <td>{3}</td><td>$</td>
-                                    </tr>",
-                                        order.TrainNum, order.CarriageNum, order.PlaceNum, String.Format("{0:0.00}", totalRow)));
-                totalAmount += totalRow;
-            }
-
-            sb.Append(String.Format(@"<tr>
-                                    <td><b>Total: </b></td>
-                                    <td><b>{0} $</b></td>
-                                </tr></table>", totalAmount));
-            pnlContent.Controls.Add(new Label { Text = sb.ToString() });*/
-
-            btnOK.Visible = true;
-            btnCancel.Visible = true;
             foreach(Order order in orderList)
             {
                 pnlContent.Controls.Add(BuilderDirector.GenerateCartPage(new OrdersOverviewBuilder(order)));
             }
+            btnOK.Visible = true;
+            btnCancel.Visible = true;
+
         }
-        catch(NullReferenceException)
+        catch (TermWorkExeption)
         {
-            HandlerBase hb = new LoginError();
-            hb.Successor = new NoOrdersError();
-            hb.ResolveProblem(this.Page, pnlContent, null);
+            TermWorkExeptionCatched.Start(this.Page, pnlContent);
+            //HandlerBase hb = new LoginError();
+            //hb.Successor = new NoInCartError();
+            //hb.ResolveProblem(this.Page, pnlContent);
             btnOK.Visible = false;
             btnCancel.Visible = false;
         }
@@ -111,5 +84,10 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
         panel.Controls.Add(l);
 
         return panel;
+    }
+
+    protected override void OnError(EventArgs e)
+    {
+        base.OnError(e);
     }
 }

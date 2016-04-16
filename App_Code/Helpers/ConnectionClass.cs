@@ -167,7 +167,6 @@ public static class ConnectionClass
             conn.Close();
             command.Parameters.Clear();
         }
-        if (train_ids.Count == 0) return null;
         return train_ids;
     }
 
@@ -454,7 +453,6 @@ public static class ConnectionClass
             conn.Close();
         }
 
-        if (orderList.Count == 0) return null;
         return orderList;
     }
 }

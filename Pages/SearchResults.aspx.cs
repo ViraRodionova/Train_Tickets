@@ -35,6 +35,8 @@ public partial class Pages_SearchResults : System.Web.UI.Page
         ArrayList required_trains = ConnectionClass.GetTrainIDs(routes_trains, date);
 
         try {
+            if (required_trains == null || required_trains.Count == 0) throw new TermWorkExeption();
+
             foreach (int id in required_trains)
             {
                 Train _train = ConnectionClass.GetTrainById(id);
@@ -49,8 +51,9 @@ public partial class Pages_SearchResults : System.Web.UI.Page
                     trains.Add(_train);
             }
         }
-        catch (NullReferenceException)
+        catch (TermWorkExeption)
         {
+            //TermWorkExeptionCatched.Start(this.Page, pnlTrains);
             pnlTrains.Controls.Add(new Label { Text = Language.GetLang().SearchRes_NoTrains() });
         }
     }

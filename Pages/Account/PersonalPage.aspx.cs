@@ -20,44 +20,24 @@ public partial class Pages_Account_PersonalPage : System.Web.UI.Page
     {
         ArrayList orderList = null;
         try {
+
+            if (Session["email"] == null) throw new TermWorkExeption();
+
             orderList = ConnectionClass.GetUserOrders(Session["email"].ToString());
-            double price = 255.25;
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append("<table>");
-            sb.Append(Language.GetLang().PersPage_TableHeader());
-            /*sb.Append("<h3>Ваші замовлення</h3>");
-            sb.Append(@"<tr>
-                                        <td width = '150px'>Поїзд</td>
-                                        <td width = '150px'>Вагон</td>
-                                        <td width = '150px'>Місце</td>
-                                        <td width = '200px'>Ціна</td>
-                                        <td width = '250px'>Дата покупки</td>
-                                    </tr><hr>");*/
+            if (orderList == null || orderList.Count == 0) throw new TermWorkExeption();
 
-            /*foreach (Order order in orderList)
-            {
-                sb.Append(String.Format(@"<tr>
-                                        <td width = '150px'>{0}</td>
-                                        <td width = '150px'>{1}</td>
-                                        <td width = '150px'>{2}</td>
-                                        <td width = '200px'>{3} $</td>
-                                        <td width = '250px'>{4}</td>
-                                    </tr>",
-                                        order.TrainNum, order.CarriageNum, order.PlaceNum, String.Format("{0:0.00}", price), order.Date));
-            }
-
-            pnlContent.Controls.Add(new Label { Text = sb.ToString() });*/
             foreach(Order order in orderList)
             {
                 pnlContent.Controls.Add(BuilderDirector.GenerateOrdersOverviewPage(new OrdersOverviewBuilder(order)));
             }
         }
-        catch (NullReferenceException)
+        catch (TermWorkExeption)
         {
-            HandlerBase hb = new LoginError();
-            hb.Successor = new NoOrdersInDB();
-            hb.ResolveProblem(this.Page, pnlContent, orderList);
+            TermWorkExeptionCatched.Start(this.Page, pnlContent);
+            //HandlerBase hb = new LoginError();
+            //hb.Successor = new NoOrdersInDB();
+            //hb.ResolveProblem(this.Page, pnlContent);
         }
     }
 
