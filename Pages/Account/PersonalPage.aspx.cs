@@ -29,7 +29,7 @@ public partial class Pages_Account_PersonalPage : System.Web.UI.Page
 
             foreach(Order order in orderList)
             {
-                pnlContent.Controls.Add(BuilderDirector.GenerateOrdersOverviewPage(new OrdersOverviewBuilder(order)));
+                pnlContent.Controls.Add(BuilderDirector.GenerateOrdersOverviewPage(new OrdersOverviewBuilder(order, 1075)));
             }
         }
         catch (TermWorkExeption)
@@ -43,13 +43,13 @@ public partial class Pages_Account_PersonalPage : System.Web.UI.Page
 
     private Panel SetHeaders()
     {
-        Label lblTrain = new Label { Text = "Потяг" };
-        Label lblDep = new Label { Text = "Відправлення" };
-        Label lblArr = new Label { Text = "Прибуття" };
-        Label lblCarr = new Label { Text = "Вагон" };
-        Label lblPlace = new Label { Text = "Місце" };
-        Label lblPrice = new Label { Text = "Ціна" };
-        Label lblDate = new Label { Text = "Дата покупки" };
+        Label lblTrain = new Label { Text = "Потяг", CssClass = "header", Width = 210, Height = 20 };
+        Label lblDep = new Label { Text = "Відправлення", CssClass = "header", Width = 135, Height = 20 };
+        Label lblArr = new Label { Text = "Прибуття", CssClass = "header", Width = 135, Height = 20 };
+        Label lblCarr = new Label { Text = "Вагон", CssClass = "header", Width = 110, Height = 20 };
+        Label lblPlace = new Label { Text = "Місце", CssClass = "header", Width = 110, Height = 20 };
+        Label lblPrice = new Label { Text = "Ціна", CssClass = "header", Width = 110, Height = 20 };
+        Label lblDate = new Label { Text = "Дата покупки", CssClass = "header", Width = 120, Height = 20 };
         Literal l = new Literal { Text = "<br />" };
         Panel panel = new Panel();
         panel.Controls.Add(lblTrain);

@@ -29,7 +29,8 @@ public static class TermWorkExeptionCatched
     static HandlerBase handler;
     static TermWorkExeptionCatched()
     {
-        handler = new LoginError();
+        //handler = new LoginError();
+        handler = new NoTrainsError();
     }
 
     public static void Start(Page page, Control control)

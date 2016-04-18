@@ -17,7 +17,7 @@ public abstract class Builder
     public abstract void SetPanelArrival();
     public abstract void SetPanelPlaces(List<object> places);
     public abstract Panel SetCarriage(string type, int freePlaces, string bId, List<Button> buttons);
-    public virtual void SetPrice() { }
+    public virtual void SetPrice(List<double> price) { }
     public virtual void SetDate() { }
     public Panel GetResult()
     {
@@ -36,12 +36,12 @@ public class TrainOverviewBuilder : Builder
         this.train = train;
         this.stFrom = stFrom;
         this.stTo = stTo;
-        result = new Panel { CssClass = "PnlTrain" };
+        result = new Panel { CssClass = "PnlTrain", Width = 800 };
     }
 
     public override void SetPanelRoute()
     {
-        Panel panel = new Panel { CssClass = "left" };
+        Panel panel = new Panel { CssClass = "pnlCell", Width = 200 };
 
         ArrayList route = ConnectionClass.GerFullRouteByTrain(train.TrainNum);
         
@@ -67,21 +67,20 @@ public class TrainOverviewBuilder : Builder
 
     public override void SetPanelDeparture()
     {
-        Panel panel = new Panel { CssClass = "left" };
+        Panel panel = new Panel { CssClass = "pnlCell", Width = 125 };
         Label lblTime = new Label
         {
-            Text = train.DepartureDate.Hour.ToString() + ":" 
-                + train.DepartureDate.Minute.ToString()
+            Text = train.DepartureDate.ToString("HH:mm")
         };
         Label lblDate = new Label
         {
-            Text = train.DepartureDate.DayOfWeek.ToString() 
-                + train.DepartureDate.Day.ToString() 
-                + train.DepartureDate.Month.ToString()
+            Text = train.DepartureDate.ToString("ddd dd MMMM"),
+            CssClass = "lbl_route"
         };
         Label lblCity = new Label
         {
-            Text = this.stFrom
+            Text = this.stFrom,
+            CssClass = "lbl_num"
         };
         Literal l1 = new Literal { Text = "<br />" };
         Literal l2 = new Literal { Text = "<br />" };
@@ -97,21 +96,20 @@ public class TrainOverviewBuilder : Builder
 
     public override void SetPanelArrival()
     {
-        Panel panel = new Panel { CssClass = "left" };
+        Panel panel = new Panel { CssClass = "pnlCell", Width = 125 };
         Label lblTime = new Label
         {
-            Text = train.ArrivalDate.Hour.ToString() + ":" 
-                + train.ArrivalDate.Minute.ToString()
+            Text = train.ArrivalDate.ToString("HH:mm")
         };
         Label lblDate = new Label
         {
-            Text = train.ArrivalDate.DayOfWeek.ToString() 
-                + train.ArrivalDate.Day.ToString() 
-                + train.ArrivalDate.Month.ToString()
+            Text = train.DepartureDate.ToString("ddd dd MMMM"),
+            CssClass = "lbl_route"
         };
         Label lblCity = new Label
         {
-            Text = this.stTo
+            Text = this.stTo,
+            CssClass = "lbl_num"
         };
         Literal l1 = new Literal { Text = "<br />" };
         Literal l2 = new Literal { Text = "<br />" };
@@ -127,7 +125,7 @@ public class TrainOverviewBuilder : Builder
 
     public override void SetPanelPlaces(List<object> places)
     {
-        Panel panel = new Panel { CssClass = "left" };
+        Panel panel = new Panel { CssClass = "pnlCell", Width = 225 };
 
         foreach (Panel pnl in places)
         {
@@ -150,9 +148,13 @@ public class TrainOverviewBuilder : Builder
         {
             ID = "btn_" + bId + "_" + train.TrainNum + "_" + train.Id,
             Text = Language.GetLang().Builder_ChooseBtn(),
+            CssClass= "BtnChoose"
         };
-        panel.Controls.Add(lblTypeFree);
         panel.Controls.Add(btnChoose);
+        panel.Controls.Add(lblTypeFree);
+        
+
+        //panel.Controls.Add(new Literal { Text = "<br />" });
         buttons.Add(btnChoose);
         return panel;
     }
@@ -163,7 +165,7 @@ public class OrdersOverviewBuilder : Builder
 {
     Order order;
 
-    public OrdersOverviewBuilder(Order order)
+    public OrdersOverviewBuilder(Order order, int widthRoot)
     {
         this.train = ConnectionClass.GetTrainById(order.TrainId);
         this.train.carriages = ConnectionClass.GetCarriagiesByTrainId(order.TrainId);
@@ -171,39 +173,42 @@ public class OrdersOverviewBuilder : Builder
             carr.places = ConnectionClass.GetPlacesByCarriageId(carr.Id);
         //this.train = (Train)DataBase.trains[order.TrainId];
         this.order = order;
-        result = new Panel { CssClass = "PnlTrain" };
+        result = new Panel { CssClass = "PnlTrain", Width = widthRoot };
     }
 
     public override Panel SetCarriage(string type, int freePlaces, string bId, List<Button> buttons)
     {
+        Panel panel = new Panel { CssClass = "pnlCell", Width = 100 };
         Label lblCarr = new Label { Text = order.CarriageNum.ToString() };
-        result.Controls.Add(lblCarr);
+        panel.Controls.Add(lblCarr);
+        result.Controls.Add(panel);
         return null;
     }
 
     public override void SetDate()
     {
-        Label lblDate = new Label { Text = order.Date.ToString() };
-        result.Controls.Add(lblDate);
+        Panel panel = new Panel { CssClass = "pnlCell", Width = 100 };
+        Label lblDate = new Label { Text = order.Date.ToString("dd/MM/yyyy \n\n HH:mm:ss") };
+        panel.Controls.Add(lblDate);
+        result.Controls.Add(panel);
     }
 
     public override void SetPanelArrival()
     {
-        Panel panel = new Panel { CssClass = "left" };
+        Panel panel = new Panel { CssClass = "pnlCell", Width = 125 };
         Label lblTime = new Label
         {
-            Text = train.ArrivalDate.Hour.ToString() + ":"
-                + train.ArrivalDate.Minute.ToString()
+            Text = train.DepartureDate.ToString("HH:mm")
         };
         Label lblDate = new Label
         {
-            Text = train.ArrivalDate.DayOfWeek.ToString()
-                + train.ArrivalDate.Day.ToString()
-                + train.ArrivalDate.Month.ToString()
+            Text = train.DepartureDate.ToString("ddd dd MMMM"),
+            CssClass = "lbl_route"
         };
         Label lblCity = new Label
         {
-            Text = order.StTo
+            Text = order.StTo,
+            CssClass = "lbl_num"
         };
         Literal l1 = new Literal { Text = "<br />" };
         Literal l2 = new Literal { Text = "<br />" };
@@ -219,21 +224,20 @@ public class OrdersOverviewBuilder : Builder
 
     public override void SetPanelDeparture()
     {
-        Panel panel = new Panel { CssClass = "left" };
+        Panel panel = new Panel { CssClass = "pnlCell", Width = 125 };
         Label lblTime = new Label
         {
-            Text = train.DepartureDate.Hour.ToString() + ":"
-                + train.DepartureDate.Minute.ToString()
+            Text = train.DepartureDate.ToString("HH:mm")
         };
         Label lblDate = new Label
         {
-            Text = train.DepartureDate.DayOfWeek.ToString()
-                + train.DepartureDate.Day.ToString()
-                + train.DepartureDate.Month.ToString()
+            Text = train.DepartureDate.ToString("ddd dd MMMM"),
+            CssClass = "lbl_route"
         };
         Label lblCity = new Label
         {
-            Text = order.StFrom
+            Text = order.StFrom,
+            CssClass = "lbl_num"
         };
         Literal l1 = new Literal { Text = "<br />" };
         Literal l2 = new Literal { Text = "<br />" };
@@ -249,13 +253,15 @@ public class OrdersOverviewBuilder : Builder
 
     public override void SetPanelPlaces(List<object> places)
     {
-        Label lblCarr = new Label { Text = order.PlaceNum.ToString() };
-        result.Controls.Add(lblCarr);
+        Panel panel = new Panel { CssClass = "pnlCell", Width = 100 };
+        Label lblPlace = new Label { Text = order.PlaceNum.ToString() };
+        panel.Controls.Add(lblPlace);
+        result.Controls.Add(panel);
     }
 
     public override void SetPanelRoute()
     {
-        Panel panel = new Panel { CssClass = "left" };
+        Panel panel = new Panel { CssClass = "pnlCell", Width = 200 };
 
         ArrayList route = ConnectionClass.GerFullRouteByTrain(train.TrainNum);
 
@@ -271,10 +277,14 @@ public class OrdersOverviewBuilder : Builder
         result.Controls.Add(panel);
     }
 
-    public override void SetPrice()
+    public override void SetPrice(List<double> price)
     {
-        Label lblCarr = new Label { Text = train.GetPlace(order.CarriageNum, order.PlaceNum).Price.ToString() + "UAH" };
-        result.Controls.Add(lblCarr);
+        Panel panel = new Panel { CssClass = "pnlCell", Width = 100 };
+        double p = train.GetPlace(order.CarriageNum, order.PlaceNum).Price;
+        Label lblPrice = new Label { Text = p.ToString() + " UAH", CssClass= "lbl_num" };
+        if (price != null) price.Add(p);
+        panel.Controls.Add(lblPrice);
+        result.Controls.Add(panel);
     }
 }
 
@@ -315,19 +325,20 @@ public static class BuilderDirector
         builder.SetPanelArrival();
         builder.SetCarriage(null, 0, null, null);
         builder.SetPanelPlaces(null);
-        builder.SetPrice();
+        builder.SetPrice(null);
         builder.SetDate();
         return builder.GetResult();
     }
 
-    public static Panel GenerateCartPage(Builder builder)
+    public static Panel GenerateCartPage(Builder builder, List<double> price)
     {
         builder.SetPanelRoute();
         builder.SetPanelDeparture();
         builder.SetPanelArrival();
         builder.SetCarriage(null, 0, null, null);
         builder.SetPanelPlaces(null);
-        builder.SetPrice();
+        builder.SetPrice(price);
+        //builder.SetCancelButton(buttons);
         return builder.GetResult();
     }
 }

@@ -2,25 +2,20 @@
     font-family: 'Lucida Grande', Tahoma, Verdana, Arial, sans-serif;
     background-image: url(../images/bg.jpg);
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
 }
 
 #wrapper {
-    margin: 0 auto;
-    padding: 10px;
-}
-
-#banner {
-    height: auto;
-    background-color: rgba(255, 255, 255, 0.6);
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    padding: 5px 10px 5px 10px;
+    margin: 0 20px;
+    padding: 0px;
 }
 
 #navigation{
     height: 90px;
     background-color: rgba(255, 255, 255, 0.6);
     border: 3px solid #E3E3E3;
+    padding: 10px 20px 0 0;
 }
 
 .listMenu {
@@ -44,11 +39,12 @@
   border-bottom:3px solid #45A136;
 }
 
-#personalPage{
+#login{
     float: right;
 }
 
 #content_area {
+    top: 100px;
     margin: 20px 0px 0px 0px;
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.6);
@@ -74,10 +70,10 @@
 
 .DdlLang {
     position: relative;
-    height: 40px;
-    width: 200px;
-    margin: 20px auto;
-    padding: 10px;
+    height: 30px;
+    width: 65px;
+    margin: 10px auto;
+    padding: 5px;
     background: #fff;
     border-radius: 7px;
     box-shadow: 0 1px 1px rgba(50,50,50,0.1);
@@ -94,6 +90,7 @@
     width: 200px;
     height: 40px;
     margin: 20px auto;
+    margin-right: 10px;
     padding: 10px;
     background: #fff;
     border-radius: 7px;
@@ -110,9 +107,30 @@
     color: #fff;
 }
 
+.BtnCancel{
+    position: relative;
+    width: 200px;
+    height: 40px;
+    margin: 20px auto;
+    padding: 10px;
+    background: #fff;
+    border-radius: 7px;
+    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 1px 1px rgba(50,50,50,0.1);
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+    color: darkred;
+}
+
+.BtnCancel:hover{
+    background: darkred;
+    color: #fff;
+}
+
 .TextBoxCalendar{
     height: 20px;
-    width: 250px;
+    width: 179px;
     margin: 20px auto;
     padding: 5px 10px;
     background: #fff;

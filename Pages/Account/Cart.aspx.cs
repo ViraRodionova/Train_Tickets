@@ -29,9 +29,20 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
 
             if (orderList == null || orderList.Count == 0) throw new TermWorkExeption();
 
-            foreach(Order order in orderList)
+            List<double> price = new List<double>();
+
+            foreach (Order order in orderList)
             {
-                pnlContent.Controls.Add(BuilderDirector.GenerateCartPage(new OrdersOverviewBuilder(order)));
+                Button but = new Button
+                {
+                    ID = "but_" + order.TrainId + "_" + order.CarriageNum + "_" + order.PlaceNum,
+                    Text = "[Видалити]",
+                    CssClass = "cancelBtn",
+                };
+                but.Click += RemoveOrderFromCart_Click;
+                pnlContent.Controls.Add(but);
+
+                pnlContent.Controls.Add(BuilderDirector.GenerateCartPage(new OrdersOverviewBuilder(order, 940), price));
             }
             btnOK.Visible = true;
             btnCancel.Visible = true;
@@ -46,6 +57,33 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
             btnOK.Visible = false;
             btnCancel.Visible = false;
         }
+    }
+
+    private void RemoveOrderFromCart_Click(object sender, EventArgs e)
+    {
+        Button b = (Button)sender;
+        string[] _id = b.ID.Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+
+        int[] id = new int[]
+        {
+            Convert.ToInt32(_id[1]),
+            Convert.ToInt32(_id[2]),
+            Convert.ToInt32(_id[3])
+        };
+
+        List<Order> orderList = (List<Order>)Session["orders"];
+        foreach(Order o in orderList)
+        {
+            if(o.TrainId == id[0] && o.CarriageNum == id[1] && o.PlaceNum == id[2])
+            {
+                orderList.Remove(o);
+                Session["orders"] = null;
+                Session["orders"] = orderList;
+                break;
+            }
+        }
+
+        Response.Redirect(Request.RawUrl);
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -67,12 +105,12 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
 
     private Panel SetHeaders()
     {
-        Label lblTrain = new Label { Text = "Потяг" };
-        Label lblDep = new Label { Text = "Відправлення" };
-        Label lblArr = new Label { Text = "Прибуття" };
-        Label lblCarr = new Label { Text = "Вагон" };
-        Label lblPlace = new Label { Text = "Місце" };
-        Label lblPrice = new Label { Text = "Ціна" };
+        Label lblTrain = new Label { Text = "Потяг", CssClass = "header", Width = 210, Height = 20 };
+        Label lblDep = new Label { Text = "Відправлення", CssClass = "header", Width = 135, Height = 20 };
+        Label lblArr = new Label { Text = "Прибуття", CssClass = "header", Width = 135, Height = 20 };
+        Label lblCarr = new Label { Text = "Вагон", CssClass = "header", Width = 110, Height = 20 };
+        Label lblPlace = new Label { Text = "Місце", CssClass = "header", Width = 110, Height = 20 };
+        Label lblPrice = new Label { Text = "Ціна", CssClass= "header", Width=110, Height=20 };
         Literal l = new Literal { Text = "<br />" };
         Panel panel = new Panel();
         panel.Controls.Add(lblTrain);
@@ -84,10 +122,5 @@ public partial class Pages_Account_Cart : System.Web.UI.Page
         panel.Controls.Add(l);
 
         return panel;
-    }
-
-    protected override void OnError(EventArgs e)
-    {
-        base.OnError(e);
     }
 }

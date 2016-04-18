@@ -76,14 +76,14 @@ public class NoTrainsError : HandlerBase
 {
     public NoTrainsError()
     {
-        _successor = new NoInDBError();
+        _successor = new LoginError();
     }
 
     public override void ResolveProblem(Page page, Control control)
     {
         string[] str = page.Request.RawUrl.Split(new char[] { '/', '.' }, StringSplitOptions.RemoveEmptyEntries).ToArray();
 
-        if (str[str.Count<string>() - 2] == "SearchResult")
+        if (str[1] == "SearchResults")
         {
             control.Controls.Add(new Label { Text = Language.GetLang().SearchRes_NoTrains() });
         }

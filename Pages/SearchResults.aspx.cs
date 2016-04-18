@@ -53,8 +53,8 @@ public partial class Pages_SearchResults : System.Web.UI.Page
         }
         catch (TermWorkExeption)
         {
-            //TermWorkExeptionCatched.Start(this.Page, pnlTrains);
-            pnlTrains.Controls.Add(new Label { Text = Language.GetLang().SearchRes_NoTrains() });
+            TermWorkExeptionCatched.Start(this.Page, pnlTrains);
+            //pnlTrains.Controls.Add(new Label { Text = Language.GetLang().SearchRes_NoTrains() });
         }
     }
 
@@ -83,10 +83,10 @@ public partial class Pages_SearchResults : System.Web.UI.Page
 
     private Panel SetHeaders()
     {
-        Label lblTrain = new Label { Text = "Потяг" };
-        Label lblDep = new Label { Text = "Відправлення" };
-        Label lblArr = new Label { Text = "Прибуття" };
-        Label lblCarr = new Label { Text = "Оберіть вагон" };
+        Label lblTrain = new Label { Text = "Потяг", CssClass= "header", Width=210, Height=20};
+        Label lblDep = new Label { Text = "Відправлення", CssClass = "header", Width = 135, Height = 20 };
+        Label lblArr = new Label { Text = "Прибуття", CssClass = "header", Width = 135, Height = 20 };
+        Label lblCarr = new Label { Text = "Оберіть тип вагону", CssClass = "header", Width = 245, Height = 20 };
         Literal l = new Literal { Text = "<br />" };
         Panel panel = new Panel();
         panel.Controls.Add(lblTrain);

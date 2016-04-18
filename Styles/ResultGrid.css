@@ -1,8 +1,30 @@
 ﻿.PnlTrain{
-    height: 100px;
+    height: 88px;
     margin: 10px;
+    border: 1px solid rgba(42, 121, 29, 0.8);
+    border-left: none;
+    background-color: rgba(255, 255, 255, 0.41);
+}
+
+.pnlCell{
+    border-left: 1px solid rgba(42, 121, 29, 0.8);
+    float: left;
+    margin: 0 10px 0px 0px;
     padding: 10px;
-    border: 2px solid red;
+    height: 67px;
+}
+
+.lbl_num{
+    font-weight: 500;
+    font-size: large;
+}
+
+.lbl_route{
+    font-size: small;
+}
+
+.lbtn_full_route{
+    color: rgb(255, 255, 255);
 }
 
 .left{
@@ -13,26 +35,39 @@
     float:right;
 }
 
-.lbl_num{
-    border: 1px solid #ff6a00;
-}
+.header{
 
-.lbl_route{
-    border: 1px solid #ff6a00;
-}
+    margin: 5px 0px 0px 10px;
+    padding: 5px;
 
-.lbtn_full_route{
-    border: 1px solid #ff6a00;
-}
-
-.lbl_date{
-    border: 1px solid #ff6a00;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 1px 1px rgba(50,50,50,0.1);
+    outline: none;
+    color: rgb(42, 121, 29);
 }
 
 .BtnChoose{
-    border: 2px solid #0094ff;
-    border-radius: 10px;
     height: auto;
     width: auto;
-    color: hotpink;
+    margin: 0px 10px 0px 0px;
+
+    background: #fff;
+    border: 1px solid rgb(42, 121, 29);
+    box-shadow: 0 1px 1px rgba(50,50,50,0.1);
+    outline: none;
+    color: rgb(42, 121, 29);
+}
+
+.BtnChoose:hover{
+    background: rgb(42, 121, 29);
+    color: #fff;
+}
+
+.cancelBtn{
+    float: right;
+    background: none;
+    border:none;
+    color: darkred;
+    cursor: pointer;
 }

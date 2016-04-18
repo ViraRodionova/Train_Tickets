@@ -27,7 +27,7 @@
     &nbsp;<asp:Label ID="lblResult" runat="server"></asp:Label>
     <br />
     <br />
-    <asp:TextBox ID="txtDateOne" runat="server" Height="30px" Width="150px" CssClass="TextBoxCalendar"></asp:TextBox>
+    <asp:TextBox ID="txtDateOne" runat="server" CssClass="TextBoxCalendar"></asp:TextBox>
     <ajaxToolkit:CalendarExtender ID="txtDateOne_CalendarExtender" runat="server" TargetControlID="txtDateOne" />
     &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDateOne" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
