@@ -4,22 +4,19 @@
     <Position X="0.5" Y="0.5" Height="0.354" Width="1.035" />
   </Comment>
   <Comment CommentText="Одинак">
-    <Position X="2.129" Y="3.18" Height="0.306" Width="0.7" />
-  </Comment>
-  <Comment CommentText="Одинак">
-    <Position X="14.514" Y="3.651" Height="0.306" Width="0.7" />
+    <Position X="0.514" Y="3.63" Height="0.306" Width="0.7" />
   </Comment>
   <Comment CommentText="Фабричний метод">
-    <Position X="4.814" Y="0.544" Height="0.354" Width="1.288" />
+    <Position X="4.682" Y="0.5" Height="0.354" Width="1.288" />
   </Comment>
-  <Comment CommentText="Композит">
-    <Position X="10.308" Y="0.5" Height="0.354" Width="1.288" />
+  <Comment CommentText="Компонувальник">
+    <Position X="12.129" Y="0.5" Height="0.354" Width="1.288" />
   </Comment>
   <Comment CommentText="Ланцюжок обов'язків">
-    <Position X="5.825" Y="3.329" Height="0.354" Width="1.668" />
+    <Position X="5.909" Y="3.293" Height="0.354" Width="1.668" />
   </Comment>
   <Comment CommentText="Стан">
-    <Position X="11.179" Y="3.361" Height="0.354" Width="1.288" />
+    <Position X="13.5" Y="3" Height="0.354" Width="1.288" />
   </Comment>
   <Class Name="Builder" Collapsed="true">
     <Position X="1.5" Y="0.5" Width="1.5" />
@@ -29,7 +26,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="BuilderDirector" Collapsed="true">
-    <Position X="0.5" Y="2.75" Width="1.5" />
+    <Position X="1.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAgBAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>App_Code\Templates\Builder.cs</FileName>
@@ -52,60 +49,51 @@
   <Class Name="CarriagePrototype" Collapsed="true">
     <Position X="6.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAIABAAAAAAAAAAAAAAAAAAQAAABA=</HashCode>
-      <FileName>App_Code\Templates\CarriagePrototype.cs</FileName>
+      <HashCode>AgAAAAAAAAAAAAAAIABAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>App_Code\Templates\FabricMethod.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CarriageReserved" Collapsed="true">
     <Position X="4.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Templates\CarriagePrototype.cs</FileName>
+      <FileName>App_Code\Templates\FabricMethod.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CarriageLux" Collapsed="true">
     <Position X="6.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Templates\CarriagePrototype.cs</FileName>
+      <FileName>App_Code\Templates\FabricMethod.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CarriageCoupe" Collapsed="true">
     <Position X="8" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Templates\CarriagePrototype.cs</FileName>
+      <FileName>App_Code\Templates\FabricMethod.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Component" Collapsed="true">
-    <Position X="11.75" Y="0.5" Width="1.5" />
+  <Class Name="ConnectionClass" Collapsed="true">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>CAACAAAAAAAIAAAADAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Entities\Train.cs</FileName>
+      <HashCode>EIQAAQAgAwBAAAAAAAAAAEAAAAQAgAICAAAAAAEAEAA=</HashCode>
+      <FileName>App_Code\Helpers\ConnectionClass.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Carriage" Collapsed="true">
-    <Position X="12" Y="1.75" Width="1.5" />
-    <AssociationLine Name="places" Type="Component">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-0.755" Y="0.081" />
-      </MemberNameLabel>
-    </AssociationLine>
+  <Class Name="PrototypeManager" Collapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAAAIAAAADAAAAAAAAAABQAAEAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Entities\Train.cs</FileName>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\Templates\FabricMethod.cs</FileName>
     </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Field Name="places" />
-    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Train" Collapsed="true">
-    <Position X="14" Y="0.5" Width="1.5" />
-    <AssociationLine Name="carriages" Type="Component">
-      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="0.027" Y="0.175" Height="0.182" Width="0.943" />
-      </MemberNameLabel>
-    </AssociationLine>
+    <Position X="16.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIIAAAADAAAAACAAAAgAAAEAAgAAAAAAAA=</HashCode>
       <FileName>App_Code\Entities\Train.cs</FileName>
@@ -114,25 +102,48 @@
       <Field Name="carriages" />
     </ShowAsCollectionAssociation>
   </Class>
+  <Class Name="Carriage" Collapsed="true">
+    <Position X="12.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAIAAAADAAAAAAAAAABQAAEAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\Entities\Train.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="places" />
+    </ShowAsCollectionAssociation>
+  </Class>
   <Class Name="Place" Collapsed="true">
-    <Position X="10.25" Y="1.75" Width="1.5" />
+    <Position X="14.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAQAIAAAADAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>App_Code\Entities\Train.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ConnectionClass" Collapsed="true">
-    <Position X="0.5" Y="3.5" Width="1.5" />
+  <Class Name="Component" Collapsed="true">
+    <Position X="14.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EIQAAQAgAwBAAAAAAAAAAEAAAAQAgAICAAAAAAEAEAA=</HashCode>
-      <FileName>App_Code\Helpers\ConnectionClass.cs</FileName>
+      <HashCode>CAACAAAAAAAIAAAADAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\Entities\Train.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoginError" Collapsed="true">
+    <Position X="7.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\Templates\Handlers.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HandlerBase" Collapsed="true">
-    <Position X="4.5" Y="4" Width="1.5" />
-    <AssociationLine Name="_successor" Type="HandlerBase">
+    <Position X="4.75" Y="3.75" Width="1.5" />
+    <AssociationLine Name="_successor" Type="HandlerBase" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="3.875" />
+        <Point X="4.5" Y="3.875" />
+        <Point X="4.5" Y="4.063" />
+        <Point X="4.75" Y="4.063" />
+      </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.518" Y="0.089" />
+        <Position X="-0.012" Y="0.23" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -143,70 +154,56 @@
       <Field Name="_successor" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="LoginError" Collapsed="true">
-    <Position X="6.5" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Templates\Handlers.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="NoInCartError" Collapsed="true">
-    <Position X="4.5" Y="5" Width="1.5" />
+    <Position X="7.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>App_Code\Templates\Handlers.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NoInDBError" Collapsed="true">
-    <Position X="8.25" Y="5" Width="1.5" />
+    <Position X="5.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>App_Code\Templates\Handlers.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NoTrainsError" Collapsed="true">
-    <Position X="6.5" Y="5" Width="1.5" />
+    <Position X="3.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>App_Code\Templates\Handlers.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EnglishLang" Collapsed="true">
-    <Position X="10.5" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAyQIYQMAIAIAAAAAAgQAUCAQABgBAIAAAQEEAIAQQE=</HashCode>
-      <FileName>App_Code\Templates\Language.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Language" Collapsed="true">
-    <Position X="13.75" Y="4" Width="1.5" />
+    <Position X="15.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAEAABAAAAAgAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <HashCode>AAgAAEAABAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>App_Code\Templates\Language.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="language" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="State" Collapsed="true">
-    <Position X="11.25" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAyQIYQMAIAIAAAAAAgQAUCAQABgBAIEAAQEEAIAQQE=</HashCode>
-      <FileName>App_Code\Templates\Language.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="UkrainianLang" Collapsed="true">
-    <Position X="12.5" Y="5" Width="1.5" />
+    <Position X="14.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAyQIYQMAIAIAAAAAAgQAUCAQABgBAIAAAQEEAIAQQE=</HashCode>
       <FileName>App_Code\Templates\Language.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PrototypeManager" Collapsed="true">
-    <Position X="8.25" Y="0.5" Width="1.5" />
+  <Class Name="EnglishLang" Collapsed="true">
+    <Position X="12.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>App_Code\Templates\CarriagePrototype.cs</FileName>
+      <HashCode>AAyQIYQMAIAIAAAAAAgQAUCAQABgBAIAAAQEEAIAQQE=</HashCode>
+      <FileName>App_Code\Templates\Language.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="State" Collapsed="true">
+    <Position X="13.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAyQIYQMAIAIAAAAAAgQAUCAQABgBAIEAAQEEAIAQQE=</HashCode>
+      <FileName>App_Code\Templates\Language.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

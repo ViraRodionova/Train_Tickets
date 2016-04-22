@@ -64,19 +64,6 @@ public abstract class CarriagePrototype
             }
         }
     }
-
-    public CarriagePrototype Clone()
-    {
-        //using (var ms = new MemoryStream())
-        //{
-        //    var formatter = new BinaryFormatter();
-        //    formatter.Serialize(ms, this);
-        //    ms.Position = 0;
-
-        //return (CarriagePrototype)formatter.Deserialize(ms);
-        //}
-        return null;
-    }
 }
 
 class CarriageReserved : CarriagePrototype
@@ -245,8 +232,8 @@ public class PrototypeManager
         return carr;
     }
 
-    static PrototypeManager()
-    {
+    //static PrototypeManager()
+    //{
         //CarriageReserved cr = new CarriageReserved();
         //carriagesMap["reserved"] = cr;
         //carriagesMap['r'] = cr;
@@ -256,5 +243,5 @@ public class PrototypeManager
         //CarriageLux cl = new CarriageLux();
         ////carriagesMap["lux"] = cl;
         //carriagesMap['l'] = cl;
-    }
+    //}
 }

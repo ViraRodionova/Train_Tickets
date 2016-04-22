@@ -43,13 +43,13 @@ public partial class Pages_Account_PersonalPage : System.Web.UI.Page
 
     private Panel SetHeaders()
     {
-        Label lblTrain = new Label { Text = "Потяг", CssClass = "header", Width = 210, Height = 20 };
-        Label lblDep = new Label { Text = "Відправлення", CssClass = "header", Width = 135, Height = 20 };
-        Label lblArr = new Label { Text = "Прибуття", CssClass = "header", Width = 135, Height = 20 };
-        Label lblCarr = new Label { Text = "Вагон", CssClass = "header", Width = 110, Height = 20 };
-        Label lblPlace = new Label { Text = "Місце", CssClass = "header", Width = 110, Height = 20 };
-        Label lblPrice = new Label { Text = "Ціна", CssClass = "header", Width = 110, Height = 20 };
-        Label lblDate = new Label { Text = "Дата покупки", CssClass = "header", Width = 120, Height = 20 };
+        Label lblTrain = new Label { Text = Language.GetLang().Table_Train(), CssClass = "header", Width = 210, Height = 20 };
+        Label lblDep = new Label { Text = Language.GetLang().Table_Dep(), CssClass = "header", Width = 135, Height = 20 };
+        Label lblArr = new Label { Text = Language.GetLang().Table_Arr(), CssClass = "header", Width = 135, Height = 20 };
+        Label lblCarr = new Label { Text = Language.GetLang().Table_Carr(), CssClass = "header", Width = 110, Height = 20 };
+        Label lblPlace = new Label { Text = Language.GetLang().Table_Place(), CssClass = "header", Width = 110, Height = 20 };
+        Label lblPrice = new Label { Text = Language.GetLang().Table_Price(), CssClass = "header", Width = 110, Height = 20 };
+        Label lblDate = new Label { Text = Language.GetLang().Table_Date(), CssClass = "header", Width = 120, Height = 20 };
         Literal l = new Literal { Text = "<br />" };
         Panel panel = new Panel();
         panel.Controls.Add(lblTrain);

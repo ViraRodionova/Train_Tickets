@@ -43,6 +43,14 @@ public abstract class State
     public abstract string Master_Home();
     public abstract string Master_Cart();
     public abstract string Master_ClientOrders();
+    public abstract string Table_Train();
+    public abstract string Table_Dep();
+    public abstract string Table_Arr();
+    public abstract string Table_TypeOfCarr();
+    public abstract string Table_Carr();
+    public abstract string Table_Place();
+    public abstract string Table_Price();
+    public abstract string Table_Date();
 }
 
 public class UkrainianLang : State
@@ -217,6 +225,46 @@ public class UkrainianLang : State
     public override string Cart_Congradulations()
     {
         return "Вітаємо з покупкою!";
+    }
+
+    public override string Table_Train()
+    {
+        return "Потяг";
+    }
+
+    public override string Table_Dep()
+    {
+        return "Відправлення";
+    }
+
+    public override string Table_Arr()
+    {
+        return "Прибуття";
+    }
+
+    public override string Table_TypeOfCarr()
+    {
+        return "Оберіть тип вагону";
+    }
+
+    public override string Table_Carr()
+    {
+        return "Вагон";
+    }
+
+    public override string Table_Place()
+    {
+        return "Місце";
+    }
+
+    public override string Table_Price()
+    {
+        return "Ціна";
+    }
+
+    public override string Table_Date()
+    {
+        return "Дата купівлі";
     }
 }
 
@@ -393,12 +441,51 @@ public class EnglishLang : State
     {
         return "Congratulations on your needs";
     }
+
+    public override string Table_Train()
+    {
+        return "Train";
+    }
+
+    public override string Table_Dep()
+    {
+        return "Departure";
+    }
+
+    public override string Table_Arr()
+    {
+        return "Arrival";
+    }
+
+    public override string Table_TypeOfCarr()
+    {
+        return "Choose carriage type";
+    }
+
+    public override string Table_Carr()
+    {
+        return "Carriage";
+    }
+
+    public override string Table_Place()
+    {
+        return "Place";
+    }
+
+    public override string Table_Price()
+    {
+        return "Price";
+    }
+
+    public override string Table_Date()
+    {
+        return "Date of buying";
+    }
 }
 
 public static class Language
 {
     static State language;
-    static string lang;
 
     static Language()
     {
@@ -412,7 +499,7 @@ public static class Language
 
     public static string GetState()
     {
-        return lang;
+        return language.state;
     }
 
     public static void ChangeLanguage(string _lang)
@@ -421,11 +508,11 @@ public static class Language
         {
             case "eng":
                 language = new EnglishLang();
-                lang = _lang;
+                language.state = _lang;
                 break;
             default:
                 language = new UkrainianLang();
-                lang = "ukr";
+                language.state = "ukr";
                 break;
         }
     }
